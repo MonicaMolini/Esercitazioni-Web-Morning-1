@@ -8,12 +8,36 @@
 // Crea una funzione 'creaProfilo()' che riceve nome e anno di nascita come parametri. Effettua un controllo che nome sia di tipo strings e anno sia di tipo number, ritorna un console error nel caso non sia così. Poi calcola l’età attuale usando new Date() e restituisci una stringa che dica "Ciao <nome>, hai <età> anni e <sei maggiorenne/non sei maggiorenne>." a seconda dell'età calcolata.
 //Infine invoca la funzione e stampa il risultato in console.
 // Suggerimento: per estrapolare l'anno corrente dalla data, usa new Date().getFullYear().
+function creaProfilo(nome, anno) {
+  if (typeof nome !== "string") {
+    return console.error("Nome non è una stringa");
+  }
+  if (typeof anno !== "number") {
+    return console.error("Anno non è un numero");
+  }
+}
+creaProfilo("Marco", 2000);
 ////////////////////
 
 ////////////////////
 // ESERCIZIO 2
 // Crea una funzione 'dadi()' che simula il lancio di due dadi a 6 facce. Se entrambi i numeri sono uguali, restituisci "Doppio!". Se la somma è maggiore di 8, restituisci "Hai vinto!". Altrimenti "Riprova".
 // Poi invoca la funzione e stampa il risultato in console.
+function dadi(a, b) {
+  if (a <= 6 && b <= 6) {
+    if (a === b) {
+      console.log("Doppio!");
+    } else if (a + b > 8) {
+      console.log("Hai vinto!");
+    } else console.log("Riprova");
+  } else {
+    console.log("Il dado è a 6 facce!");
+  }
+}
+dadi(3, 3);
+dadi(3, 6);
+dadi(2, 1);
+dadi(5, 7);
 ////////////////////
 
 ////////////////////
@@ -29,7 +53,26 @@
 ////////////////////
 // ESERCIZIO 5
 // Dato un giorno della settimana in forma stringa, scrivi una funzione 'verificaGiorno()' che usa uno switch per stampare 'Oggi si lavora' se è giorno lavorativo (lun-ven) o 'Finalmente il weekend' se weekend (sab-dom).
-// Tip: utilizza in modo intelligente il break per scrivere meno codice possibile e non scordare di gestire i casi in cui il giorno non sia valido.
+// Tip: utilizza in modo intelligente il break per scrivere meno codice possibile e non scordare di gestire i casi in cui il giorno non sia valido.ù
+let giornoSettimana = "domenica";
+function verificaGiorno() {
+  switch (giornoSettimana) {
+    case "lunedì":
+    case "martedì":
+    case "mercoledì":
+    case "giovedì":
+    case "venerdì":
+      console.log("Oggi si lavora!");
+      break;
+    case "sabato":
+    case "domenica":
+      console.log("Finalmente il weekend!");
+      break;
+    default:
+      console.log("Hai sbagliato giorno della settimana");
+  }
+}
+verificaGiorno();
 ////////////////////
 
 ////////////////////
@@ -45,6 +88,14 @@
 ////////////////////
 // ESERCIZIO 8
 // Crea una funzione 'contaFizz' che usa un ciclo `while` per contare da 5 a 15. Ogni volta che il numero è multiplo di 3, stampa "Fizz". Suggerimento: per calcolare se un numero è multiplo di 3, usa l'operatore modulo `%`, n % 3 === 0.
+let n = 5;
+while (n <= 15) {
+  if (n % 3 === 0) {
+    console.log("Fizz");
+    console.log(n);
+  }
+  n++;
+}
 ////////////////////
 
 ////////////////////
@@ -52,6 +103,17 @@
 // Scrivi una funzione 'saluto()' che accetta nome e genere ("M" o "F") come parametro e restituisce una frase di saluto appropriato per il gener. **Usa per fare ciò l'operatore ternario**.
 // Invoca la funzione con un nome e un genere a tua scelta.
 // Output richiesto: "Gentile Signora Maria, benvenuta nel nostro sistema." oppure "Caro Signore Marco, benvenuto nel nostro sistema."
+function saluto(nome, genere) {
+  return genere === "M"
+    ? "Caro Signor " + nome + ", benvenuto nel nostro sistema."
+    : genere === "F"
+    ? "Gentile Signora " + nome + ", benvenuta nel nostro sistema."
+    : "Che genere sei, " + nome + "?";
+}
+console.log(saluto("Dario", "M"));
+console.log(saluto("Marika", "F"));
+console.log(saluto("Jonatan", " "));
+
 ////////////////////
 
 ////////////////////
