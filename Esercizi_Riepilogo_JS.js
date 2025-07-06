@@ -156,6 +156,14 @@ console.log(checkUser(utente));
 ////////////////////
 // ESERCIZIO 7
 // Scrivi una funzione 'asterischi()' che accetti come parametro un numero e che tramite un ciclo `for` costuisca una stringa composta un totale di asterischi uguale al numero passato come parametr. Invoca la funzione stampando il risulato in console. **Attenzione: non usare il console.log() all'interno della funzione! la funzione deve ritornare la stringa**
+function asterischi(numero) {
+  let stringa = "";
+  for (i = 1; i <= numero; i++) {
+    stringa += "*";
+  }
+  return stringa;
+}
+console.log(asterischi(8));
 ////////////////////
 
 ////////////////////
