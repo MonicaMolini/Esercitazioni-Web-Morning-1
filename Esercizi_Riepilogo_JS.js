@@ -15,8 +15,13 @@ function creaProfilo(nome, anno) {
   if (typeof anno !== "number") {
     return console.error("Anno non è un numero");
   }
+  const annoCorrente = new Date().getFullYear();
+  const età = annoCorrente - anno;
+  const maggiorenne = età >= 18 ? "sei maggiorenne" : "non sei maggiorenne";
+  return "Ciao " + nome + ", hai " + età + " anni e " + maggiorenne;
 }
-creaProfilo("Marco", 2000);
+
+console.log(creaProfilo("Marco", 2000));
 ////////////////////
 
 ////////////////////
@@ -43,11 +48,61 @@ dadi(5, 7);
 ////////////////////
 // ESERCIZIO 3
 // Crea una funzione che accetta un array di 5 numeri e restituisce un nuovo array (senza usare metodi array!) con solo i numeri pari moltiplicati per 2.
+let numeri = [10, 21, 30, 40, 50];
+function numeriDoppi(numeri) {
+  let doppi = [];
+  for (let x in numeri) {
+    if (numeri[x] % 2 === 0) {
+      doppi[x] = numeri[x] * 2;
+    }
+  }
+  return doppi;
+}
+console.log(numeriDoppi(numeri));
 ////////////////////
 
 ////////////////////
 // ESERCIZIO 4
 // Crea una classe `Persona` che abbia `nome`, `cognome`, 'eta', `email` e `telefono`. Aggiungi un metodo `.presentati()` che stampa "Mi chiamo <nome> <cognome> e ho <eta> anni". Poi , istanzia due oggetti `Persona` e chiama per ognuno di essi il metodo.
+class Persona {
+  constructor(nome, cognome, età, email, telefono) {
+    this.nome = nome;
+    this.cognome = cognome;
+    this.età = età;
+    this.email = email;
+    this.telefono = telefono;
+  }
+  presentati() {
+    console.log(
+      "Mi chiamo " +
+        this.nome +
+        " " +
+        this.cognome +
+        " e ho " +
+        this.età +
+        " anni."
+    );
+  }
+}
+
+let Persona1 = new Persona(
+  "Federico",
+  "Cirella",
+  28,
+  "federicocirella1997@gmail.com",
+  "3920131659"
+);
+let Persona2 = new Persona(
+  "Gianluca",
+  "Esposito",
+  35,
+  "gianlucaesposito35@gmail.com",
+  "3923124587"
+);
+
+Persona1.presentati();
+Persona2.presentati();
+
 ////////////////////
 
 ////////////////////
@@ -78,6 +133,24 @@ verificaGiorno();
 ////////////////////
 // ESERCIZIO 6
 // Crea una funzione 'checkUser()' che riceve un oggetto `utente` con proprietà `username`, `attivo` (boolean), e `tentativi`. Usa if-else per restituire dei messaggi diversi in base allo stato. Esempio: "utente disattivato", "numero tentativi superato" oppure "benvenuto <nome>".
+let utente = {
+  username: "Federico",
+  attivo: true,
+  tentativi: 8,
+};
+
+function checkUser(utente) {
+  if (utente.attivo === false) {
+    return "utente disattivato";
+  }
+  if (utente.tentativi > 5) {
+    return "numero tentativi superato";
+  }
+  if (utente.username) {
+    return "Benvenuto " + utente.username;
+  }
+}
+console.log(checkUser(utente));
 ////////////////////
 
 ////////////////////
