@@ -18,7 +18,7 @@ function creaProfilo(nome, anno) {
   const annoCorrente = new Date().getFullYear();
   const età = annoCorrente - anno;
   const maggiorenne = età >= 18 ? "sei maggiorenne" : "non sei maggiorenne";
-  return "Ciao " + nome + ", hai " + età + " anni e " + maggiorenne;
+  return `Ciao ${nome}, hai ${età} anni e ${maggiorenne}`;
 }
 
 console.log(creaProfilo("Marco", 2000));
