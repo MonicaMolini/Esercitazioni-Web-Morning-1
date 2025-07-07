@@ -51,9 +51,9 @@ dadi(5, 7);
 let numeri = [10, 21, 30, 40, 50];
 function numeriDoppi(numeri) {
   let doppi = [];
-  for (let x in numeri) {
-    if (numeri[x] % 2 === 0) {
-      doppi[x] = numeri[x] * 2;
+  for (let x of numeri) {
+    if (x % 2 === 0) {
+      doppi[doppi.length] = x * 2;
     }
   }
   return doppi;
