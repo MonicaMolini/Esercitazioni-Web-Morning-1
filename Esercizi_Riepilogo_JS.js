@@ -109,7 +109,7 @@ Persona2.presentati();
 // ESERCIZIO 5
 // Dato un giorno della settimana in forma stringa, scrivi una funzione 'verificaGiorno()' che usa uno switch per stampare 'Oggi si lavora' se è giorno lavorativo (lun-ven) o 'Finalmente il weekend' se weekend (sab-dom).
 // Tip: utilizza in modo intelligente il break per scrivere meno codice possibile e non scordare di gestire i casi in cui il giorno non sia valido.ù
-let giornoSettimana = "domenica";
+let giornoSettimana = "sabato";
 function verificaGiorno() {
   switch (giornoSettimana) {
     case "lunedì":
@@ -117,17 +117,17 @@ function verificaGiorno() {
     case "mercoledì":
     case "giovedì":
     case "venerdì":
-      console.log("Oggi si lavora!");
+      return "Oggi si lavora!";
       break;
     case "sabato":
     case "domenica":
-      console.log("Finalmente il weekend!");
+      return "Finalmente il weekend!";
       break;
     default:
-      console.log("Hai sbagliato giorno della settimana");
+      return "Hai sbagliato giorno della settimana";
   }
 }
-verificaGiorno();
+console.log(verificaGiorno());
 ////////////////////
 
 ////////////////////
