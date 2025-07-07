@@ -210,6 +210,14 @@ const prodotti = [
   { nome: "Scarpe", prezzo: 60 },
 ];
 
+let totale = 0;
+function calcolaTotale() {
+  for (const prodotto of prodotti) {
+    totale += prodotto.prezzo;
+  }
+  return totale;
+}
+console.log(calcolaTotale());
 // ESERCIZIO 11
 // Istanzia 4 oggetti `Persona` dell'esercizio 4.
 // Inseriscili in un array 'persone'
