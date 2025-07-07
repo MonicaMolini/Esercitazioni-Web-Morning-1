@@ -65,10 +65,10 @@ console.log(numeriDoppi(numeri));
 // ESERCIZIO 4
 // Crea una classe `Persona` che abbia `nome`, `cognome`, 'eta', `email` e `telefono`. Aggiungi un metodo `.presentati()` che stampa "Mi chiamo <nome> <cognome> e ho <eta> anni". Poi , istanzia due oggetti `Persona` e chiama per ognuno di essi il metodo.
 class Persona {
-  constructor(nome, cognome, età, email, telefono) {
+  constructor(nome, cognome, eta, email, telefono) {
     this.nome = nome;
     this.cognome = cognome;
-    this.età = età;
+    this.eta = eta;
     this.email = email;
     this.telefono = telefono;
   }
@@ -79,7 +79,7 @@ class Persona {
         " " +
         this.cognome +
         " e ho " +
-        this.età +
+        this.eta +
         " anni."
     );
   }
@@ -169,14 +169,17 @@ console.log(asterischi(8));
 ////////////////////
 // ESERCIZIO 8
 // Crea una funzione 'contaFizz' che usa un ciclo `while` per contare da 5 a 15. Ogni volta che il numero è multiplo di 3, stampa "Fizz". Suggerimento: per calcolare se un numero è multiplo di 3, usa l'operatore modulo `%`, n % 3 === 0.
-let n = 5;
-while (n <= 15) {
-  if (n % 3 === 0) {
-    console.log("Fizz");
-    console.log(n);
+function contaFizz() {
+  let n = 5;
+  while (n <= 15) {
+    if (n % 3 === 0) {
+      console.log(n);
+      console.log("Fizz");
+    }
+    n++;
   }
-  n++;
 }
+contaFizz();
 ////////////////////
 
 ////////////////////
@@ -218,6 +221,7 @@ function calcolaTotale() {
   return totale;
 }
 console.log(calcolaTotale());
+
 // ESERCIZIO 11
 // Istanzia 4 oggetti `Persona` dell'esercizio 4.
 // Inseriscili in un array 'persone'
@@ -228,3 +232,46 @@ console.log(calcolaTotale());
 // - Altrimenti, stampa "Utente registrato: Nome Cognome".
 
 // Invoca la funzione passandogli uno degli oggetti all'interno dell'array 'persone' selezionato in modo randomico (math.random) **Attenzione alla propritetà length dell'array! ricordate che l'indice parte da 0!**.
+let Persona3 = new Persona(
+  "Salvatore",
+  "Cirella",
+  24,
+  "sasi@gmail.com",
+  "+3924565432"
+);
+let Persona4 = new Persona(
+  "Giovanni",
+  "Palumbo",
+  28,
+  "giop@gmail.com",
+  "+3923565432"
+);
+const persone = [Persona1, Persona2, Persona3, Persona4];
+
+function checkPersona(persona) {
+  let chiocciola = false;
+  let punto = false;
+  for (let i = 0; i < persona.email.length; i++) {
+    if (persona.email[i] === "@") {
+      chiocciola = true;
+    }
+    if (persona.email[i] === ".") {
+      punto = true;
+    }
+  }
+  if (!chiocciola || !punto) {
+    return "Email non valida";
+  }
+  if (persona.eta < 18) {
+    return "Utente minorenne";
+  }
+  if (persona.telefono[0] !== "+") {
+    return "Numero di telefono non valido";
+  } else {
+    return "Utente registrato: " + persona.nome + " " + persona.cognome + "!";
+  }
+}
+let indiceCasuale = Math.floor(Math.random() * persone.length);
+let personaRandom = persone[indiceCasuale];
+console.log(personaRandom.nome);
+console.log(checkPersona(personaRandom));
