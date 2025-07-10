@@ -97,21 +97,23 @@ console.log(verificaGiorno());
 // ESERCIZIO 6
 // Crea una funzione 'checkUser()' che riceve un oggetto `utente` con proprietà `username`, `attivo` (boolean), e `tentativi`. Usa if-else per restituire dei messaggi diversi in base allo stato. Esempio: "utente disattivato", "numero tentativi superato" oppure "benvenuto <nome>".
 ////////////////////
-const utente = {
-  username: "genny",
+
+let utente = {
+  username: "Pippo",
   attivo: true,
-  tentativi: 2,
+  tentativi: 5,
 };
 function checkUser(utente) {
-  const { username, attivo, tentativi } = utente;
+  let { username, attivo, tentativi } = utente;
   if (!username) {
     return "username non inserito";
   } else if (!attivo) {
     return "utente non attivo";
-  } else if (tentativi >= 3) {
-    return `utente ${username} ha utilizzato troppi tentativi per accedere`;
+  } else if (tentativi > 5) {
+    return "numero di tentativi superato";
+  } else {
+    return `benvenuto ${username}`;
   }
-  return `benvenuto ${username}`;
 }
 console.log(checkUser(utente));
 
@@ -121,19 +123,19 @@ console.log(checkUser(utente));
 ////////////////////
 function asterischi(numero) {
   let risultato = "";
-  for (i = 0; i < 15; i++) {
+  for (i = 0; i < numero; i++) {
     risultato += "*";
   }
   return risultato;
 }
-console.log(asterischi(15));
+console.log(asterischi(30));
 
 ////////////////////
 // ESERCIZIO 8
 // Crea una funzione 'contaFizz' che usa un ciclo `while` per contare da 5 a 15. Ogni volta che il numero è multiplo di 3, stampa "Fizz". Suggerimento: per calcolare se un numero è multiplo di 3, usa l'operatore modulo `%`, n % 3 === 0.
 ////////////////////
 function contaFizz() {
-  let n = 4;
+  let n = 5;
   while (n <= 15) {
     if (n % 3 === 0) {
       console.log(n);
