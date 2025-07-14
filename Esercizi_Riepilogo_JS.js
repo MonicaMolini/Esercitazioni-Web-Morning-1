@@ -59,6 +59,15 @@ function numeriDoppi(numeri) {
   return doppi;
 }
 console.log(numeriDoppi(numeri));
+
+// ESERCIZIO SVOLTO CON IL METODO MAP
+let numbers = [10, 21, 30, 40, 50];
+function moltiplica(numbers) {
+  const numeriMoltiplicati = numbers.map((number) => number * 2);
+  return numeriMoltiplicati;
+}
+console.log(moltiplica(numbers));
+
 ////////////////////
 
 ////////////////////
@@ -221,6 +230,15 @@ function calcolaTotale() {
   return totale;
 }
 console.log(calcolaTotale());
+
+// ESERCIZIO SVOLTO CON IL METODO REDUCE
+let somma = prodotti.reduce((a, prodotto) => a + prodotto.prezzo, 0);
+console.log(somma);
+
+// ESERCIZIO SVOLTO CON IL METODO FOREACH
+let sum = 0;
+prodotti.forEach((prodotto) => (sum += prodotto.prezzo));
+console.log(sum);
 
 // ESERCIZIO 11
 // Istanzia 4 oggetti `Persona` dell'esercizio 4.
