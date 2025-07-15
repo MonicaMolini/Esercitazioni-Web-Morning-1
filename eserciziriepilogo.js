@@ -5,7 +5,34 @@
 // Ordina i prodotti per prezzo, dal più basso al più alto.
 // Utilizza una template string per mostrare name e price del prodotto nel risultato.
 // Suggerimento: Usa filter per selezionare i prodotti per categoria e sort per ordinarli.
+const prodotti = [
+  { name: "T-shirt", price: 19.99, category: "Abbigliamento" },
+  { name: "Jeans", price: 49.99, category: "Abbigliamento" },
+  { name: "Cuffie Bluetooth", price: 89.99, category: "Elettronica" },
+  { name: "Smartphone", price: 699.99, category: "Elettronica" },
+  { name: "Tazza da caffè", price: 9.99, category: "Casa" },
+  { name: "Lampada da tavolo", price: 29.99, category: "Casa" },
+  { name: "Libro di cucina", price: 14.99, category: "Libri" },
+];
 
+function statFinale(prodotti) {
+  const abbigliamento = categoria(prodotti); // non capisco perche bisogna mettere un const abbigliamento qui e
+  ordinaCrescente(abbigliamento); //cambiare i paramentri nelle funzioni sotto (abbigliamento)
+  return nomePrice(abbigliamento);
+}
+
+function categoria(prodotti) {
+  return prodotti.filter((prodotto) => prodotto.category === "Abbigliamento");
+}
+function ordinaCrescente(prodotti) {
+  prodotti.sort((a, b) => a.price - b.price);
+}
+
+function nomePrice(prodotti) {
+  return prodotti.map((prodotto) => prodotto.name + " " + prodotto.price);
+}
+
+console.log(statFinale(prodotti));
 // Esercizio 2: Calcola il Totale di un Carrello
 // Data una lista di prodotti (con name, price e quantity), crea una funzione che calcola il totale del carrello.
 // La funzione deve accettare l’array del carrello come parametro e usare reduce per calcolare il totale.
