@@ -98,6 +98,42 @@ console.log(getDepartmentStats("Vendite"));
 // Scrivi una funzione filterReservations che accetti come parametro una data (YYYY-MM-DD) e un numero di ospiti.
 // La funzione deve restituire una lista di prenotazioni in quella data per almeno il numero di ospiti specificato.
 // Usa filter per ottenere il risultato e usa template strings per mostrare le prenotazioni
+const reservations = [
+  {
+    name: "Mario Rossi",
+    date: "2025-07-20",
+    time: "20:00",
+    guests: 4,
+  },
+  {
+    name: "Lucia Bianchi",
+    date: "2025-07-21",
+    time: "19:30",
+    guests: 2,
+  },
+  {
+    name: "Giovanni Verdi",
+    date: "2025-07-20",
+    time: "21:00",
+    guests: 5,
+  },
+];
+function filterReservations(data, ospiti) {
+  if (Array.isArray(reservations)) {
+    return reservations
+      .filter(
+        (reservation) =>
+          reservation.date === data && reservation.guests >= ospiti
+      )
+      .map(
+        (reservation) =>
+          `Prenotato da: ${reservation.name}, in data: ${reservation.date}, per n° ospiti: ${reservation.guests}`
+      );
+  } else {
+    console.error("ERRORE");
+  }
+}
+console.log(filterReservations("2025-07-20", 2));
 
 // Esercizio 6: Gestione dei Task di un Progetto
 // Hai un array tasks, dove ogni task ha description, completed (booleano), e priority.
@@ -106,6 +142,54 @@ console.log(getDepartmentStats("Vendite"));
 // Il numero di task completati e da completare.
 // Una lista di task prioritari (priority maggiore di 7).
 // Usa una template string per mostrare il resoconto finale.
+const tasks = [
+  {
+    description: "Comprare il latte",
+    completed: false,
+    priority: 7,
+  },
+  {
+    description: "Scrivere la relazione settimanale",
+    completed: true,
+    priority: 9,
+  },
+  {
+    description: "Portare fuori il cane",
+    completed: false,
+    priority: 5,
+  },
+  {
+    description: "Prenotare il dentista",
+    completed: false,
+    priority: 8,
+  },
+  {
+    description: "Studiare JavaScript",
+    completed: true,
+    priority: 10,
+  },
+];
+
+function getTasksSummary(tasks) {
+  const numeroTotaleTasks = tasks.length;
+  const tasksComplete = tasks.reduce(
+    (acc, cur) => (cur.completed ? (acc += 1) : acc),
+    0
+  );
+  const taskIncomplete = tasks.reduce(
+    (acc, cur) => (!cur.completed ? (acc += 1) : acc),
+    0
+  );
+  const taskPrioritarie = tasks
+    .filter((task) => task.priority > 7)
+    .map((task) => ` ${task.description}`);
+  const risultato = `il numero totale di tasks è: ${numeroTotaleTasks},
+  il numero di tasks complete è: ${tasksComplete},
+  il numero di tasks incomplete è: ${taskIncomplete},
+  la lista delle tasks prioritare è: ${taskPrioritarie}`;
+  return risultato;
+}
+console.log(getTasksSummary(tasks));
 
 // Esercizio 6: Gestione dei Task di un Progetto
 // Hai un array tasks, dove ogni task ha description, completed (booleano), e priority.
