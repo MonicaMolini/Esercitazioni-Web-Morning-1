@@ -58,13 +58,52 @@ console.log(carrello(product));
 // Hai un array di oggetti events, dove ogni evento ha name, date e availableTickets.
 // Scrivi una funzione checkAvailability che accetti una soglia numerica (es. 10) e ritorni una lista degli eventi che hanno più di quella soglia di biglietti disponibili.
 // Usa filter e map per ottenere l’elenco e formatta l’output con una template string mostrando name, date, e availableTickets.
-
+const events = [
+  { name: "Concerto Coldplay", date: "2025-08-30", availableTickets: 120 },
+  { name: "Mostra Van Gogh", date: "2025-09-12", availableTickets: 0 },
+  { name: "Stand-up Comedy", date: "2025-07-20", availableTickets: 45 },
+  { name: "Festival Jazz", date: "2025-08-10", availableTickets: 80 },
+];
+function checkAvailability(sogliaNumerica) {
+  return events
+    .filter((event) => event.availableTickets > sogliaNumerica)
+    .map(
+      (event) =>
+        event.name + ", " + event.date + ", " + event.availableTickets + "."
+    );
+}
+console.log(checkAvailability(46));
 // Esercizio 4: Statistiche sui Dipendenti
 // Hai un array di oggetti employees, dove ogni oggetto ha name, department e salary.
 // Crea una funzione getDepartmentStats che accetti il nome di un dipartimento e calcoli lo stipendio medio dei dipendenti di quel dipartimento.
 // Usa filter e reduce per ottenere i dipendenti del dipartimento specifico e calcolare la media.
 // Ritorna il risultato in una template string: “Lo stipendio medio per il dipartimento di [dipartimento] è di [media]”.
+const employees = [
+  { name: "Mario Rossi", department: "IT", salary: 3000 },
+  { name: "Lucia Bianchi", department: "HR", salary: 2800 },
+  { name: "Giovanni Verdi", department: "IT", salary: 3200 },
+  { name: "Anna Neri", department: "Vendite", salary: 2500 },
+  { name: "Paolo Gialli", department: "Vendite", salary: 2700 },
+];
 
+function getDepartmentStats(department) {
+  const numeroDipartimenti = employees.filter(
+    (employee) => employee.department === department
+  );
+  const media =
+    numeroDipartimenti.reduce((acc, cur) => acc + cur.salary, 0) /
+    numeroDipartimenti.length;
+  return (
+    "Lo stipendio medio per il dipartimento di " +
+    department +
+    " è di " +
+    media +
+    "."
+  );
+}
+console.log(getDepartmentStats("IT"));
+console.log(getDepartmentStats("HR"));
+console.log(getDepartmentStats("Vendite"));
 // Esercizio 5: Simula un Sistema di Prenotazioni
 // Hai un array di oggetti reservations che rappresenta prenotazioni in un ristorante, con proprietà name, date, time, e guests.
 // Scrivi una funzione filterReservations che accetti come parametro una data (YYYY-MM-DD) e un numero di ospiti.
