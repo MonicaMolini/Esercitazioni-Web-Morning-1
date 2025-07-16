@@ -15,27 +15,16 @@ const prodotti = [
   { name: "Libro di cucina", price: 14.99, category: "Libri" },
 ];
 
-function statFinale(prodotti, category) {
-  const stessaCategoria = categoria(prodotti, category);
-  ordinaCrescente(stessaCategoria);
-  return nomePrice(stessaCategoria);
-}
-
 function categoria(prodotti, category) {
-  return prodotti.filter((prodotto) => prodotto.category === category);
+  return prodotti
+    .filter((prodotto) => prodotto.category === category)
+    .sort((a, b) => a.price - b.price)
+    .map((prodotto) => prodotto.name + " " + prodotto.price);
 }
-function ordinaCrescente(prodotti) {
-  prodotti.sort((a, b) => a.price - b.price);
-}
-
-function nomePrice(prodotti) {
-  return prodotti.map((prodotto) => prodotto.name + " " + prodotto.price);
-}
-
-console.log(statFinale(prodotti, "Abbigliamento"));
-console.log(statFinale(prodotti, "Elettronica"));
-console.log(statFinale(prodotti, "Libri"));
-console.log(statFinale(prodotti, "Casa"));
+console.log(categoria(prodotti, "Abbigliamento"));
+console.log(categoria(prodotti, "Elettronica"));
+console.log(categoria(prodotti, "Libri"));
+console.log(categoria(prodotti, "Casa"));
 // Esercizio 2: Calcola il Totale di un Carrello
 // Data una lista di prodotti (con name, price e quantity), crea una funzione che calcola il totale del carrello.
 // La funzione deve accettare l’array del carrello come parametro e usare reduce per calcolare il totale.
