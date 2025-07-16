@@ -15,14 +15,14 @@ const prodotti = [
   { name: "Libro di cucina", price: 14.99, category: "Libri" },
 ];
 
-function statFinale(prodotti) {
-  const abbigliamento = categoria(prodotti); // non capisco perche bisogna mettere un const abbigliamento qui e
-  ordinaCrescente(abbigliamento); //cambiare i paramentri nelle funzioni sotto (abbigliamento)
-  return nomePrice(abbigliamento);
+function statFinale(prodotti, category) {
+  const stessaCategoria = categoria(prodotti, category);
+  ordinaCrescente(stessaCategoria);
+  return nomePrice(stessaCategoria);
 }
 
-function categoria(prodotti) {
-  return prodotti.filter((prodotto) => prodotto.category === "Abbigliamento");
+function categoria(prodotti, category) {
+  return prodotti.filter((prodotto) => prodotto.category === category);
 }
 function ordinaCrescente(prodotti) {
   prodotti.sort((a, b) => a.price - b.price);
@@ -32,12 +32,28 @@ function nomePrice(prodotti) {
   return prodotti.map((prodotto) => prodotto.name + " " + prodotto.price);
 }
 
-console.log(statFinale(prodotti));
+console.log(statFinale(prodotti, "Abbigliamento"));
+console.log(statFinale(prodotti, "Elettronica"));
+console.log(statFinale(prodotti, "Libri"));
+console.log(statFinale(prodotti, "Casa"));
 // Esercizio 2: Calcola il Totale di un Carrello
 // Data una lista di prodotti (con name, price e quantity), crea una funzione che calcola il totale del carrello.
 // La funzione deve accettare l’array del carrello come parametro e usare reduce per calcolare il totale.
 // Il risultato finale deve essere una template string che mostri il totale in formato di valuta (ad esempio, $45.00).
+const product = [
+  { name: "T-shirt", price: 19.99, quantity: 3 },
+  { name: "Jeans", price: 49.99, quantity: 2 },
+  { name: "Cuffie Bluetooth", price: 89.99, quantity: 1 },
+];
 
+function carrello(product) {
+  const totale = product.reduce(
+    (acc, cur) => acc + cur.price * cur.quantity,
+    0
+  );
+  return "$" + totale;
+}
+console.log(carrello(product));
 // Esercizio 3: Gestisci la Disponibilità dei Biglietti
 // Hai un array di oggetti events, dove ogni evento ha name, date e availableTickets.
 // Scrivi una funzione checkAvailability che accetti una soglia numerica (es. 10) e ritorni una lista degli eventi che hanno più di quella soglia di biglietti disponibili.
