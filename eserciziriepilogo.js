@@ -269,12 +269,41 @@ function topSales(sales) {
     .map((sale) => `${sale.product}: ${sale.amount}€`);
 }
 console.log(topSales(sales));
+console.log("---------------------------------");
 // Esercizio 9: Gestisci un Portfolio di Investimenti
 // Un portfolio contiene un array investments con oggetti che hanno stockSymbol, shares, pricePerShare, e date.
 // Scrivi una funzione portfolioSummary che calcoli il valore totale di ogni investimento (shares * pricePerShare) e restituisca un resoconto con:
 // Simbolo e valore di ogni investimento.
 // Valore totale del portfolio.
 // Usa map per calcolare i valori individuali e reduce per il totale del portfolio. Format il risultato con template strings.
+const investments = [
+  { stockSymbol: "AAPL", shares: 10, pricePerShare: 170, date: "2025-01-15" },
+  { stockSymbol: "GOOGL", shares: 5, pricePerShare: 2800, date: "2025-02-20" },
+  { stockSymbol: "TSLA", shares: 8, pricePerShare: 700, date: "2025-03-10" },
+  { stockSymbol: "AMZN", shares: 3, pricePerShare: 3400, date: "2025-04-01" },
+  { stockSymbol: "NFLX", shares: 6, pricePerShare: 500, date: "2025-05-25" },
+  { stockSymbol: "MSFT", shares: 12, pricePerShare: 310, date: "2025-06-10" },
+  { stockSymbol: "NVDA", shares: 4, pricePerShare: 950, date: "2025-06-18" },
+  { stockSymbol: "META", shares: 7, pricePerShare: 380, date: "2025-06-22" },
+  { stockSymbol: "DIS", shares: 15, pricePerShare: 120, date: "2025-07-01" },
+  { stockSymbol: "INTC", shares: 20, pricePerShare: 34, date: "2025-07-10" },
+];
+function portfolioSummary(investments) {
+  // prettier-ignore
+  const valoreSingoloInvestimento = investments.map(
+    (investment) => 
+    `Stock symbol: ${investment.stockSymbol}, Investimento: ${investment.shares * investment.pricePerShare}`);
+  const totaleInvestimento = investments.reduce(
+    (acc, cur) => acc + cur.shares * cur.pricePerShare,
+    0
+  );
+  return `Statistiche Portfolio:
+  ${valoreSingoloInvestimento}
+  Totale investimento: ${totaleInvestimento}`;
+}
+console.log(portfolioSummary(investments));
+
+//Chiedere come fare allineare bene le frasi
 
 // Esercizio 10: Sistema di Recensioni per un Ristorante
 // Un ristorante ha un array dishes con oggetti che rappresentano i piatti e le recensioni associate, ognuno con name, price, e un array reviews con rating e comment.
