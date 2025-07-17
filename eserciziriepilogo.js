@@ -42,7 +42,7 @@ function carrello(product) {
     (acc, cur) => acc + cur.price * cur.quantity,
     0
   );
-  return "$" + totale;
+  return `$${totale}`;
 }
 console.log(carrello(product));
 // Esercizio 3: Gestisci la Disponibilità dei Biglietti
