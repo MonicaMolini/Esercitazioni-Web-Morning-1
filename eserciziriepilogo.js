@@ -21,7 +21,7 @@ function categoria(prodotti, category) {
       (prodotto) => prodotto.category.toUpperCase() === category.toUpperCase()
     ) // si usa toUpperCase per rendere i confronti piu fluidi, trasforma tutto il testo in maiuscolo.
     .sort((a, b) => a.price - b.price)
-    .map((prodotto) => prodotto.name + " " + prodotto.price);
+    .map((prodotto) => `${prodotto.name} ${prodotto.price}`);
 }
 console.log(categoria(prodotti, "Abbigliamento"));
 console.log(categoria(prodotti, "Elettronica"));
