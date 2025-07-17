@@ -250,7 +250,25 @@ console.log("---------------------------------");
 // Ordina le vendite per amount in ordine decrescente.
 // Ritorna i primi 5 prodotti in una lista formattata come: “[product]: [amount] €”.
 // Usa sort per l’ordinamento e slice per ottenere le prime 5 vendite.
-
+const sales = [
+  { product: "Laptop", quantity: 2, amount: 1500 },
+  { product: "Smartphone", quantity: 5, amount: 2500 },
+  { product: "Tablet", quantity: 3, amount: 900 },
+  { product: "Laptop", quantity: 1, amount: 750 },
+  { product: "Smartphone", quantity: 2, amount: 1000 },
+  { product: "Monitor", quantity: 4, amount: 800 },
+  { product: "Keyboard", quantity: 7, amount: 350 },
+  { product: "Mouse", quantity: 10, amount: 200 },
+  { product: "Headphones", quantity: 3, amount: 450 },
+  { product: "Webcam", quantity: 5, amount: 500 },
+];
+function topSales(sales) {
+  return sales
+    .sort((a, b) => b.amount - a.amount)
+    .slice(0, 5)
+    .map((sale) => `${sale.product}: ${sale.amount}€`);
+}
+console.log(topSales(sales));
 // Esercizio 9: Gestisci un Portfolio di Investimenti
 // Un portfolio contiene un array investments con oggetti che hanno stockSymbol, shares, pricePerShare, e date.
 // Scrivi una funzione portfolioSummary che calcoli il valore totale di ogni investimento (shares * pricePerShare) e restituisca un resoconto con:
