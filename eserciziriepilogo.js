@@ -17,7 +17,9 @@ const prodotti = [
 
 function categoria(prodotti, category) {
   return prodotti
-    .filter((prodotto) => prodotto.category === category)
+    .filter(
+      (prodotto) => prodotto.category.toUpperCase() === category.toUpperCase()
+    ) // si usa toUpperCase per rendere i confronti piu fluidi, trasforma tutto il testo in maiuscolo.
     .sort((a, b) => a.price - b.price)
     .map((prodotto) => prodotto.name + " " + prodotto.price);
 }
