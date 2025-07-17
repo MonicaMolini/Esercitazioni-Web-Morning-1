@@ -27,6 +27,7 @@ console.log(categoria(prodotti, "Abbigliamento"));
 console.log(categoria(prodotti, "Elettronica"));
 console.log(categoria(prodotti, "Libri"));
 console.log(categoria(prodotti, "Casa"));
+console.log("---------------------------------");
 // Esercizio 2: Calcola il Totale di un Carrello
 // Data una lista di prodotti (con name, price e quantity), crea una funzione che calcola il totale del carrello.
 // La funzione deve accettare l’array del carrello come parametro e usare reduce per calcolare il totale.
@@ -45,6 +46,7 @@ function carrello(product) {
   return `$${totale}`;
 }
 console.log(carrello(product));
+console.log("---------------------------------");
 // Esercizio 3: Gestisci la Disponibilità dei Biglietti
 // Hai un array di oggetti events, dove ogni evento ha name, date e availableTickets.
 // Scrivi una funzione checkAvailability che accetti una soglia numerica (es. 10) e ritorni una lista degli eventi che hanno più di quella soglia di biglietti disponibili.
@@ -64,6 +66,7 @@ function checkAvailability(sogliaNumerica) {
     );
 }
 console.log(checkAvailability(46));
+console.log("---------------------------------");
 // Esercizio 4: Statistiche sui Dipendenti
 // Hai un array di oggetti employees, dove ogni oggetto ha name, department e salary.
 // Crea una funzione getDepartmentStats che accetti il nome di un dipartimento e calcoli lo stipendio medio dei dipendenti di quel dipartimento.
@@ -95,6 +98,7 @@ function getDepartmentStats(department) {
 console.log(getDepartmentStats("IT"));
 console.log(getDepartmentStats("HR"));
 console.log(getDepartmentStats("Vendite"));
+console.log("---------------------------------");
 // Esercizio 5: Simula un Sistema di Prenotazioni
 // Hai un array di oggetti reservations che rappresenta prenotazioni in un ristorante, con proprietà name, date, time, e guests.
 // Scrivi una funzione filterReservations che accetti come parametro una data (YYYY-MM-DD) e un numero di ospiti.
@@ -136,7 +140,7 @@ function filterReservations(data, ospiti) {
   }
 }
 console.log(filterReservations("2025-07-20", 2));
-
+console.log("---------------------------------");
 // Esercizio 6: Gestione dei Task di un Progetto
 // Hai un array tasks, dove ogni task ha description, completed (booleano), e priority.
 // Crea una funzione getTasksSummary che usi filter, map e reduce per restituire:
@@ -192,7 +196,7 @@ function getTasksSummary(tasks) {
   return risultato;
 }
 console.log(getTasksSummary(tasks));
-
+console.log("---------------------------------");
 // Esercizio 6: Gestione dei Task di un Progetto
 // Hai un array tasks, dove ogni task ha description, completed (booleano), e priority.
 // Crea una funzione getTasksSummary che usi filter, map e reduce per restituire:
@@ -206,7 +210,40 @@ console.log(getTasksSummary(tasks));
 // Crea una funzione averageRating che accetti un productId e calcoli la valutazione media per quel prodotto.
 // Usa filter per selezionare le recensioni del prodotto e reduce per calcolare la media dei rating.
 // Ritorna la media in una template string: “La valutazione media per il prodotto [productId] è di [rating medio] stelle”.
+const reviews = [
+  { productId: 101, rating: 4, comment: "Ottimo prodotto, molto utile!" },
+  { productId: 102, rating: 5, comment: "Super soddisfatto, lo consiglio." },
+  { productId: 101, rating: 3, comment: "Buono, ma potrebbe migliorare." },
+  {
+    productId: 103,
+    rating: 2,
+    comment: "Non soddisfatto, aspettative non rispettate.",
+  },
+  {
+    productId: 102,
+    rating: 4,
+    comment: "Molto buono, ottimo rapporto qualità-prezzo.",
+  },
+  { productId: 101, rating: 5, comment: "Eccellente, supera le aspettative." },
+];
 
+function averageRating(reviews, productId) {
+  const productFilter = reviews.filter(
+    (review) => review.productId === productId
+  );
+  if (productFilter.length === 0) {
+    return `Nessuna recensione trovata per il prodotto ${productId}`;
+  }
+  const media =
+    productFilter.reduce((acc, cur) => acc + cur.rating, 0) /
+    productFilter.length;
+  return `La valutazione media per il prodotto ${productId} è di ${media} stelle.`;
+}
+console.log(averageRating(reviews, 102));
+console.log(averageRating(reviews, 101));
+console.log(averageRating(reviews, 103));
+console.log(averageRating(reviews, 99));
+console.log("---------------------------------");
 // Esercizio 8: Ordina e Classifica le Vendite
 // Hai un array di oggetti sales che rappresentano vendite effettuate, con product, quantity, e amount.
 // Crea una funzione topSales che:
