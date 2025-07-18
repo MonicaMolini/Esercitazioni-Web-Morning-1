@@ -310,16 +310,10 @@ console.log("---------------------------------");
 // Seleziona il piatto giusto con find, e poi usa map e reduce per ottenere la media delle recensioni.
 // Ritorna il risultato in una template string: “La valutazione media per [name] è [media] stelle.”
 
-console.log("\u001b[1;31m Messaggio rosso");
-
-console.log("\u001b[1;31m Messaggio rosso");
-
-console.log("\u001b[1;32m Messaggio verde");
-
-console.log("\u001b[1;33m Messaggio giallo");
-
-console.log("\u001b[1;34m Messaggio blu");
-
-console.log("\u001b[1;35m Messaggio viola");
-
-console.log("\u001b[1;36m Messaggio ciano");
+// console.log("\u001b[1;31m Messaggio rosso");
+// console.log("\u001b[1;31m Messaggio rosso");
+// console.log("\u001b[1;32m Messaggio verde");
+// console.log("\u001b[1;33m Messaggio giallo");
+// console.log("\u001b[1;34m Messaggio blu");
+// console.log("\u001b[1;35m Messaggio viola");
+// console.log("\u001b[1;36m Messaggio ciano");
