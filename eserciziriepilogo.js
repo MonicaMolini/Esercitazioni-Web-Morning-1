@@ -6,15 +6,113 @@
 // Utilizza una template string per mostrare name e price del prodotto nel risultato.
 // Suggerimento: Usa filter per selezionare i prodotti per categoria e sort per ordinarli.
 
+// const prodotti = [
+//   {
+//     nome: "Set di 12 Pennelli Professionali",
+//     prezzo: 24.99,
+//     categoria: "Pennelli"
+//   },
+//   {
+//     nome: "Set di 24 Colori Acrilici",
+//     prezzo: 29.90,
+//     categoria: "Colori"
+//   },
+//   {
+//     nome: "Blocco Carta per Acquerello 300g/m²",
+//     prezzo: 12.50,
+//     categoria: "Carta"
+//   },
+
+//   {
+//     nome: "Blocco Carta",
+//     prezzo: 10.50,
+//     categoria: "carta"
+//   },
+ 
+// ];
+
+// function getProdotti(prodotti, categoria) {
+//     return prodotti.filter(prodotto => prodotto.categoria.toUpperCase() === categoria.toUpperCase()).sort((a, b) => a.prezzo -b.prezzo).forEach(prodotto =>
+//     console.log(`Il prodotto ${prodotto.nome} ha un prezzo di ${prodotto.prezzo}`));
+    
+// }
+
+   
+//     getProdotti(prodotti, "carta")
+
+    
+
+
+
+
 // Esercizio 2: Calcola il Totale di un Carrello
 // Data una lista di prodotti (con name, price e quantity), crea una funzione che calcola il totale del carrello.
 // La funzione deve accettare l’array del carrello come parametro e usare reduce per calcolare il totale.
 // Il risultato finale deve essere una template string che mostri il totale in formato di valuta (ad esempio, $45.00).
 
+// const prodotti = [
+//   {
+//     nome: "Smartphone XYZ Model 2025",
+//     prezzo: 100,
+//     quantita: 50
+//   },
+//   {
+//     nome: "Cuffie Wireless Bluetooth",
+//     prezzo: 90,
+//     quantita: 120
+//   },
+//   {
+//     nome: "Smartwatch Fitness Tracker",
+//     prezzo: 50,
+//     quantita: 80
+//   }, 
+// ];
+
+// function calcolaTotale(prodotti) {
+//     const totale = prodotti.reduce((acc, cur) => acc + cur.prezzo, 0);
+//     console.log(`Il totale è ${totale}$`)
+// }
+// calcolaTotale(prodotti);
+
+
+
 // Esercizio 3: Gestisci la Disponibilità dei Biglietti
 // Hai un array di oggetti events, dove ogni evento ha name, date e availableTickets.
 // Scrivi una funzione checkAvailability che accetti una soglia numerica (es. 10) e ritorni una lista degli eventi che hanno più di quella soglia di biglietti disponibili.
 // Usa filter e map per ottenere l’elenco e formatta l’output con una template string mostrando name, date, e availableTickets.
+
+// const events = [
+//   {
+//     name: "Concerto Rock Festival",
+//     date: "2025-08-10",
+//     availableTickets: 15
+//   },
+//   {
+//     name: "Mostra d'Arte Contemporanea",
+//     date: "2025-09-05",
+//     availableTickets: 8
+//   },
+//   {
+//     name: "Festival del Cinema",
+//     date: "2025-09-20",
+//     availableTickets: 12
+//   },
+//   {
+//     name: "Spettacolo di Teatro Classico",
+//     date: "2025-07-30",
+//     availableTickets: 10
+//   },
+// ];
+
+// function checkAvailability(soglia) {
+//     let acquisto = events.filter(ticket => ticket.availableTickets > soglia)
+//     let risultato = acquisto.map (evento => {
+//         return (`sono rimasti solo ${evento.availableTickets} biglietti per l'evento ${evento.name} in data ${evento.date}`)
+//     })
+//     console.log(risultato)
+
+// }
+// checkAvailability(10)
 
 // Esercizio 4: Statistiche sui Dipendenti
 // Hai un array di oggetti employees, dove ogni oggetto ha name, department e salary.
@@ -22,19 +120,44 @@
 // Usa filter e reduce per ottenere i dipendenti del dipartimento specifico e calcolare la media.
 // Ritorna il risultato in una template string: “Lo stipendio medio per il dipartimento di [dipartimento] è di [media]”.
 
+// const employees = [
+//   { name: "Alice", department: "Engineering", salary: 45000 },
+//   { name: "Bob", department: "Marketing", salary: 40000 },
+//   { name: "Charlie", department: "Sales", salary: 42000 },
+//   { name: "Diana", department: "Engineering", salary: 47000 },
+//   { name: "Eve", department: "Marketing", salary: 43000 }
+// ];
+//  function getDepartmentStats(calcolo){
+//     const dipartimento = employees.filter(dipartimento => dipartimento.department.toUpperCase() === calcolo).reduce((acc, cur) => acc + cur.salary, 0)/dipartimento.length;
+//     return `Lo stipendio medio per il dipartimento di ${calcolo} è di ${dipartimento}`
+//  }
+//  totale = Math.round(getDepartmentStats)
+
+//  console.log(employees, "Engineering")
+
 // Esercizio 5: Simula un Sistema di Prenotazioni
 // Hai un array di oggetti reservations che rappresenta prenotazioni in un ristorante, con proprietà name, date, time, e guests.
 // Scrivi una funzione filterReservations che accetti come parametro una data (YYYY-MM-DD) e un numero di ospiti.
 // La funzione deve restituire una lista di prenotazioni in quella data per almeno il numero di ospiti specificato.
 // Usa filter per ottenere il risultato e usa template strings per mostrare le prenotazioni
 
-// Esercizio 6: Gestione dei Task di un Progetto
-// Hai un array tasks, dove ogni task ha description, completed (booleano), e priority.
-// Crea una funzione getTasksSummary che usi filter, map e reduce per restituire:
-// Il numero totale di task.
-// Il numero di task completati e da completare.
-// Una lista di task prioritari (priority maggiore di 7).
-// Usa una template string per mostrare il resoconto finale.
+let reservations = [
+  { name: 'Mario Rossi', date: '2025-07-20', time: '20:00', guests: 4 },
+  { name: 'Luca Bianchi', date: '2025-07-20', time: '21:00', guests: 2 },
+  { name: 'Anna Verdi', date: '2025-07-21', time: '19:30', guests: 3 }
+];
+
+function filterReservations(data, ospiti){
+   const prenotazione = reservations.filter((reservation) => reservation.date === data && reservation.guests >= ospiti);
+
+   if( prenotazione.length === 0){
+    return `nessuna prenotazione per la data ${date}`
+   } 
+
+   return prenotazione
+}
+
+console.log(filterReservations("2025-07-21", 2));
 
 // Esercizio 6: Gestione dei Task di un Progetto
 // Hai un array tasks, dove ogni task ha description, completed (booleano), e priority.
@@ -43,12 +166,40 @@
 // Il numero di task completati e da completare.
 // Una lista di task prioritari (priority maggiore di 7).
 // Usa una template string per mostrare il resoconto finale.
+
+const tasks = [
+  { description: 'Fare la spesa', completed: false, priority: 'alta' },
+  { description: 'Pulire la casa', completed: true, priority: 'media' },
+  { description: 'Studiare JavaScript', completed: false, priority: 'alta' },
+  { description: 'Pagare le bollette', completed: true, priority: 'bassa' },
+  { description: 'Portare fuori il cane', completed: false, priority: 'media' }
+];
+
+function getTasksSummary(tasks) {
+  const totale = tasks.length;}
+
+  console.log(task)
+
+
 
 // Esercizio 7: Analizza Recensioni dei Prodotti
 // Un sito ha un array reviews di oggetti, dove ogni recensione ha productId, rating e comment.
 // Crea una funzione averageRating che accetti un productId e calcoli la valutazione media per quel prodotto.
 // Usa filter per selezionare le recensioni del prodotto e reduce per calcolare la media dei rating.
 // Ritorna la media in una template string: “La valutazione media per il prodotto [productId] è di [rating medio] stelle”.
+
+const reviews = [
+  { productId: 1, rating: 5, comment: 'Ottimo prodotto!' },
+  { productId: 2, rating: 4, comment: 'Buona qualità.' },
+  { productId: 1, rating: 3, comment: 'Soddisfacente, ma migliorabile.' },
+  { productId: 3, rating: 5, comment: 'Eccellente, consigliato!' },
+  { productId: 2, rating: 2, comment: 'Non come mi aspettavo.' },
+  { productId: 1, rating: 4, comment: 'Funziona bene!' }
+];
+ function averageRating(productId){
+   return recensioni =  reviews.filter 
+   
+ }
 
 // Esercizio 8: Ordina e Classifica le Vendite
 // Hai un array di oggetti sales che rappresentano vendite effettuate, con product, quantity, e amount.
