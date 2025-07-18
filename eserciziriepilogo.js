@@ -288,23 +288,22 @@ const investments = [
   { stockSymbol: "DIS", shares: 15, pricePerShare: 120, date: "2025-07-01" },
   { stockSymbol: "INTC", shares: 20, pricePerShare: 34, date: "2025-07-10" },
 ];
+
 function portfolioSummary(investments) {
   // prettier-ignore
-  const valoreSingoloInvestimento = investments.map(
-    (investment) => 
-    `Stock symbol: ${investment.stockSymbol}, Investimento: ${investment.shares * investment.pricePerShare}`);
-  const totaleInvestimento = investments.reduce(
-    (acc, cur) => acc + cur.shares * cur.pricePerShare,
-    0
+  const totale = investments.reduce(
+    (acc, cur) => acc + cur.pricePerShare * cur.shares, 0);
+  const singoliInvestimenti = investments.map(
+    (investment) => `Simbolo: ${
+      investment.stockSymbol
+    } - Investimento Singolo: ${investment.shares * investment.pricePerShare}
+  ---`
   );
-  return `Statistiche Portfolio:
-  ${valoreSingoloInvestimento}
-  Totale investimento: ${totaleInvestimento}`;
+  singoliInvestimenti.forEach((investment) => console.log(investment));
+  return `totale investimento: ${totale}`;
 }
 console.log(portfolioSummary(investments));
-
-//Chiedere come fare allineare bene le frasi
-
+console.log("---------------------------------");
 // Esercizio 10: Sistema di Recensioni per un Ristorante
 // Un ristorante ha un array dishes con oggetti che rappresentano i piatti e le recensioni associate, ognuno con name, price, e un array reviews con rating e comment.
 // Scrivi una funzione getDishRating che accetti il nome di un piatto e calcoli la valutazione media.
