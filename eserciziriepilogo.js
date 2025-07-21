@@ -200,12 +200,69 @@ console.log(averageRating(5, recensioni))
 // Ritorna i primi 5 prodotti in una lista formattata come: “[product]: [amount] €”.
 // Usa sort per l’ordinamento e slice per ottenere le prime 5 vendite.
 
+let sales = [
+  {prodotto: "computer", quantita: 5, amount: 2000},
+  {prodotto: "telefono", quantita: 2, amount: 800},
+  {prodotto: "orologio", quantita: 10, amount: 1000},
+  {prodotto: "scarpe", quantita: 20, amount: 2500},
+  {prodotto: "pasta", quantita: 5, amount: 5},
+  {prodotto: "acqua", quantita: 50, amount: 50},
+  {prodotto: "maglietta", quantita: 3, amount: 60},
+
+]
+
+function topSales(sales){
+  if(sales.length === 0){
+    return "errore"
+  }
+sales.sort((a,b) => b.amount-a.amount)
+let lista = sales.slice(0,5)
+let stringa = lista.map(sales2 => `${sales2.prodotto} : ${sales2.amount} €`)
+return stringa
+}
+console.log(topSales(sales))
+
+
 // Esercizio 9: Gestisci un Portfolio di Investimenti
 // Un portfolio contiene un array investments con oggetti che hanno stockSymbol, shares, pricePerShare, e date.
 // Scrivi una funzione portfolioSummary che calcoli il valore totale di ogni investimento (shares * pricePerShare) e restituisca un resoconto con:
 // Simbolo e valore di ogni investimento.
 // Valore totale del portfolio.
 // Usa map per calcolare i valori individuali e reduce per il totale del portfolio. Format il risultato con template strings.
+let investimenti = [
+  {crypto: "btc", shares: 10, pricePerShare: 1500, date: "2025-07-21"},
+  {crypto: "etherum", shares: 4, pricePerShare: 120, date: "2025-08-01"},
+  {crypto: "luna", shares: 1, pricePerShare: 10, date: "2025-08-14"},
+  {crypto: "solana", shares: 2, pricePerShare: 110, date: "2025-07-21"}
+];
+
+function portfolioSummary(investimenti) {
+  let dettagli = investimenti.map(item => {
+    let valore = item.shares * item.pricePerShare;
+    return `${item.crypto}: ${valore} €`;
+  });
+
+  let totaleValore = investimenti.reduce((acc, item) => {
+    return acc + (item.shares * item.pricePerShare);
+  }, 0);
+
+  return {
+    dettagli: dettagli,
+    totale: `${totaleValore} €`
+  };
+}
+
+const summary = portfolioSummary(investimenti);
+console.log("Dettaglio investimenti:");
+summary.dettagli.forEach(line => console.log(line));
+console.log(`Valore totale portfolio: ${summary.totale}`);
+
+
+
+  return {
+    dettagli: dettagli,
+    totale: totaleValore + " €"
+  };
 
 // Esercizio 10: Sistema di Recensioni per un Ristorante
 // Un ristorante ha un array dishes con oggetti che rappresentano i piatti e le recensioni associate, ognuno con name, price, e un array reviews con rating e comment.
