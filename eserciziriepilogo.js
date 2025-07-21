@@ -7,19 +7,19 @@
 // Suggerimento: Usa filter per selezionare i prodotti per categoria e sort per ordinarli.
 
 
-let prodotti = [
-  { nome: "iphone", prezzo: 950, categoria: "cellulari" },
-  { nome: "televisore", prezzo: 400, categoria: "elettronica" },
-  { nome: "pasta", prezzo: 1, categoria: "cibo" },
-  { nome: "acqua", prezzo: 2, categoria: "cibo" },
-];
-function esercizio(categoria) {
-  let tipoProdotto = prodotti.filter(prodotti => prodotti.categoria === categoria);
-  let ordineCrescente = tipoProdotto.sort((a, b) => a.prezzo - b.prezzo);
-  let frase = ordineCrescente.map(prodotto => `il prodotto che hai scelto è ${prodotto.nome} e ha un prezzo di ${prodotto.prezzo}`)
-  return frase
-}
-console.log(esercizio("elettronica"));
+// let prodotti = [
+//   { nome: "iphone", prezzo: 950, categoria: "cellulari" },
+//   { nome: "televisore", prezzo: 400, categoria: "elettronica" },
+//   { nome: "pasta", prezzo: 1, categoria: "cibo" },
+//   { nome: "acqua", prezzo: 2, categoria: "cibo" },
+// ];
+// function esercizio(categoria) {
+//   let tipoProdotto = prodotti.filter(prodotti => prodotti.categoria === categoria);
+//   let ordineCrescente = tipoProdotto.sort((a, b) => a.prezzo - b.prezzo);
+//   let frase = ordineCrescente.map(prodotto => `il prodotto che hai scelto è ${prodotto.nome} e ha un prezzo di ${prodotto.prezzo}`)
+//   return frase
+// }
+// console.log(esercizio("elettronica"));
 
 
 
@@ -28,41 +28,41 @@ console.log(esercizio("elettronica"));
 // La funzione deve accettare l’array del carrello come parametro e usare reduce per calcolare il totale.
 // Il risultato finale deve essere una template string che mostri il totale in formato di valuta (ad esempio, $45.00).
 
-let prodotti1 = [
-  { nome: "iphone", prezzo: 950, quantita: 4 },
-  { nome: "televisore", prezzo: 400, quantita: 2},
-  { nome: "pasta", prezzo: 1, quantita: 10 },
-  { nome: "acqua", prezzo: 2, quantita: 10 },
-];
+// let prodotti1 = [
+//   { nome: "iphone", prezzo: 950, quantita: 4 },
+//   { nome: "televisore", prezzo: 400, quantita: 2},
+//   { nome: "pasta", prezzo: 1, quantita: 10 },
+//   { nome: "acqua", prezzo: 2, quantita: 10 },
+// ];
 
-function calcola(carrello){
-   let totale =  carrello.reduce((acc, num) => acc + (num.prezzo * num.quantita),0)
-       return `il tuo acquisto ha un importo di ${totale} euro`
+// function calcola(carrello){
+//    let totale =  carrello.reduce((acc, num) => acc + (num.prezzo * num.quantita),0)
+//        return `il tuo acquisto ha un importo di ${totale} euro`
 
-}
-console.log(calcola(prodotti1))
+// }
+// console.log(calcola(prodotti1))
 
 // Esercizio 3: Gestisci la Disponibilità dei Biglietti
 // Hai un array di oggetti events, dove ogni evento ha name, date e availableTickets.
 // Scrivi una funzione checkAvailability che accetti una soglia numerica (es. 10) e ritorni una lista degli eventi che hanno più di quella soglia di biglietti disponibili.
 // Usa filter e map per ottenere l’elenco e formatta l’output con una template string mostrando name, date, e availableTickets.
-let eventi = [
-  { nome: "concerto", data: "01/01/2026", bigliettiDisponibili: 100 },
-  { nome: "partita calcio", data: "09/10/2026", bigliettiDisponibili: 15 },
-  { nome: "teatro", data: "03/04/2029", bigliettiDisponibili: 10 },
-  { nome: "Partita tennis", data: "7/09/2025", bigliettiDisponibili: 0 },
-];
-function acquisto(nome, nBiglietti){
-  let acquisto = eventi.find(evento=> evento.nome.toLowerCase() === nome.toLowerCase() && evento.bigliettiDisponibili >= nBiglietti)
-  if(acquisto){
-    return `acquisto disponibile per l'evento scelto`
-  }else{
-    return `biglietti non disponibili`
-  }
+// let eventi = [
+//   { nome: "concerto", data: "01/01/2026", bigliettiDisponibili: 100 },
+//   { nome: "partita calcio", data: "09/10/2026", bigliettiDisponibili: 15 },
+//   { nome: "teatro", data: "03/04/2029", bigliettiDisponibili: 10 },
+//   { nome: "Partita tennis", data: "7/09/2025", bigliettiDisponibili: 0 },
+// ];
+// function acquisto(nome, nBiglietti){
+//   let acquisto = eventi.find(evento=> evento.nome.toLowerCase() === nome.toLowerCase() && evento.bigliettiDisponibili >= nBiglietti)
+//   if(acquisto){
+//     return `acquisto disponibile per l'evento scelto`
+//   }else{
+//     return `biglietti non disponibili`
+//   }
   
-}
-console.log(acquisto("concerto", 15))
-console.log(acquisto("teatro", 30))
+// }
+// console.log(acquisto("concerto", 15))
+// console.log(acquisto("teatro", 30))
 // function checkAvailability (soglia){
 //   let acquisto = eventi.filter(biglietto => biglietto.bigliettiDisponibili > soglia)
 //   let risultato = acquisto.map(evento => {
@@ -78,23 +78,23 @@ console.log(acquisto("teatro", 30))
 // Crea una funzione getDepartmentStats che accetti il nome di un dipartimento e calcoli lo stipendio medio dei dipendenti di quel dipartimento.
 // Usa filter e reduce per ottenere i dipendenti del dipartimento specifico e calcolare la media.
 // Ritorna il risultato in una template string: “Lo stipendio medio per il dipartimento di [dipartimento] è di [media]”.
-let employees = [
-  { nome: "Marco", department: "magazzino", salary: 2200 },
-  { nome: "Sara", department: "amministrazione", salary: 2000 },
-  { nome: "Roberto", department: "risorse umane", salary: 2400 },
-];
-function getDepartmentStats(ruolo) {
-    if(ruolo === ""){
-        return `selezionare un department esistente`
-    }
-let lavoratori = employees.filter(employes => employes.department === ruolo)
+// let employees = [
+//   { nome: "Marco", department: "magazzino", salary: 2200 },
+//   { nome: "Sara", department: "amministrazione", salary: 2000 },
+//   { nome: "Roberto", department: "risorse umane", salary: 2400 },
+// ];
+// function getDepartmentStats(ruolo) {
+//     if(ruolo === ""){
+//         return `selezionare un department esistente`
+//     }
+// let lavoratori = employees.filter(employes => employes.department === ruolo)
 
-let totaleStipendi = lavoratori.reduce((acc, salary)=> acc + salary.salary,0)
-let media = totaleStipendi / lavoratori.length
-return `lo stipendio medio per il dipartimento ${ruolo} è di ${media}`
+// let totaleStipendi = lavoratori.reduce((acc, salary)=> acc + salary.salary,0)
+// let media = totaleStipendi / lavoratori.length
+// return `lo stipendio medio per il dipartimento ${ruolo} è di ${media}`
 
-}
-console.log(getDepartmentStats("amministrazione"))
+// }
+// console.log(getDepartmentStats("amministrazione"))
 
 
 // Esercizio 5: Simula un Sistema di Prenotazioni
@@ -104,23 +104,23 @@ console.log(getDepartmentStats("amministrazione"))
 // Usa filter per ottenere il risultato e usa template strings per mostrare le prenotazioni
 
 
-let prenotazioni = [
-  {nome: "simone", data: "10-10-2025", ora: "20.30", guest: 4},
-  {nome: "marco", data: "20-1-2025", ora: "20.00", guest: 7},
-  {nome: "roberto", data: "5-2-2025", ora:"19.30", guest: 2},
-  {nome: "luca", data: "12-3-2025", ora: "21.00", guest: 5}
-]
-function filterReservations(data, ospiti){
-  if(typeof data !== "string" || data.length === 0 ){
-    return "inserire un valore valido (data)"
-  }
-  if(typeof ospiti !== "number" || ospiti <= 0){
-    return "inserire valore valido (ospiti)"
-  }
-  let ospitiPrenotati = prenotazioni.filter(prenotazione=> prenotazione.data === data && prenotazione.guest >= ospiti )
-  return ospitiPrenotati
-  }
-  console.log(filterReservations("12-3-2025", 2))
+// let prenotazioni = [
+//   {nome: "simone", data: "10-10-2025", ora: "20.30", guest: 4},
+//   {nome: "marco", data: "20-1-2025", ora: "20.00", guest: 7},
+//   {nome: "roberto", data: "5-2-2025", ora:"19.30", guest: 2},
+//   {nome: "luca", data: "12-3-2025", ora: "21.00", guest: 5}
+// ]
+// function filterReservations(data, ospiti){
+//   if(typeof data !== "string" || data.length === 0 ){
+//     return "inserire un valore valido (data)"
+//   }
+//   if(typeof ospiti !== "number" || ospiti <= 0){
+//     return "inserire valore valido (ospiti)"
+//   }
+//   let ospitiPrenotati = prenotazioni.filter(prenotazione=> prenotazione.data === data && prenotazione.guest >= ospiti )
+//   return ospitiPrenotati
+  // }
+  // console.log(filterReservations("12-3-2025", 2))
 
 // Esercizio 6: Gestione dei Task di un Progetto
 // Hai un array tasks, dove ogni task ha description, completed (booleano), e priority.
@@ -130,12 +130,68 @@ function filterReservations(data, ospiti){
 // Una lista di task prioritari (priority maggiore di 7).
 // Usa una template string per mostrare il resoconto finale.
 
+const tasks = [
+  { description: "inserire css", completed: true, priority: 8 },
+  { description: "sistemare html", completed: false, priority: 9 },
+  { description: "creare JavaScript", completed: true, priority: 6 },
+];
+
+function getTasksSummary(tasks) {
+  const totaleTask = tasks.length;
+  const taskCompletati = tasks.reduce((conteggio, task) => {
+    if (task.completed === true) {
+      conteggio = conteggio + 1;
+    }
+    return conteggio;
+  }, 0);
+  const taskDaCompletare = totaleTask - taskCompletati;
+  const taskPrioritari = tasks.filter(task => task.priority > 7);
+
+  const descrizioniPrioritarie = taskPrioritari.map(task => task.description);
+
+ 
+  
+  const resoconto = `Totale task: ${totaleTask}, Completati: ${taskCompletati}, Da completare: ${taskDaCompletare}, Task prioritari: ${descrizioniPrioritarie.join(', ')}`;
+  return resoconto;
+}
+
+console.log(getTasksSummary(tasks));
+
+
+
 
 // Esercizio 7: Analizza Recensioni dei Prodotti
 // Un sito ha un array reviews di oggetti, dove ogni recensione ha productId, rating e comment.
 // Crea una funzione averageRating che accetti un productId e calcoli la valutazione media per quel prodotto.
 // Usa filter per selezionare le recensioni del prodotto e reduce per calcolare la media dei rating.
 // Ritorna la media in una template string: “La valutazione media per il prodotto [productId] è di [rating medio] stelle”.
+
+let recensioni = [
+  { idProdotto: 1, rating: 4, comment: "Ottimo!" },
+  { idProdotto: 1, rating: 5, comment: "Perfetto" },
+  { idProdotto: 2, rating: 3, comment: "Nella media" },
+  { idProdotto: 2, rating: 4, comment: "Buono" },
+  { idProdotto: 3, rating: 4, comment: "Ottimo!" },
+  { idProdotto: 3, rating: 5, comment: "Perfetto" },
+  { idProdotto: 4, rating: 3, comment: "Nella media" },
+  { idProdotto: 3, rating: 4, comment: "Buono" }
+];
+
+function averageRating(idProdotto, recensioni) {
+  let recensioniProdotto = recensioni.filter(recensione => recensione.idProdotto === idProdotto);
+
+  if (recensioniProdotto.length === 0) {
+    return `Prodotto con id ${idProdotto} non trovato`;
+  }
+
+  let sommaVoti = recensioniProdotto.reduce((acc, recensione) => acc + recensione.rating, 0);
+  let mediaVoti = sommaVoti / recensioniProdotto.length;
+
+  return `La valutazione media per il prodotto ${idProdotto} è di ${mediaVoti.toFixed(2)} stelle`;
+}
+
+console.log(averageRating(5, recensioni))
+
 
 // Esercizio 8: Ordina e Classifica le Vendite
 // Hai un array di oggetti sales che rappresentano vendite effettuate, con product, quantity, e amount.
