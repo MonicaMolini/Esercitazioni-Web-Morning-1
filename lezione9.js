@@ -11,21 +11,43 @@ const divisione = (a, b) => {
     // Se b è 0, generiamo un errore manualmente che blocca il codice
     throw new Error("Non puoi dividere per zero!");
     // console.error("non è possibile dividere per zero");
+    // return;
+  }
+  if (a === 0) {
+    // Se b è 0, generiamo un errore manualmente che blocca il codice
+    throw new Error("Non puoi dividere per zero!");
+    // console.error("non è possibile dividere per zero");
+    // return;
+  }
+  if (b === 5) {
+    // Se b è 0, generiamo un errore manualmente che blocca il codice
+    throw new Error("b è 5");
+    // console.error("non è possibile dividere per zero");
+    // return;
+  }
+  if (!b) {
+    // Se b è 0, generiamo un errore manualmente che blocca il codice
+    throw new Error(
+      "inserisci un numero diverso da zero, o un parametro valido"
+    );
+    // console.error("non è possibile dividere per zero");
+    // return;
   }
   return a / b;
 };
 
 console.log(divisione(10, 2)); // Output: 5
-//console.log(divisione(10, 0)); // Uncaught Error: Non puoi dividere per zero!
+// console.log(divisione(10, 0)); // Uncaught Error: Non puoi dividere per zero!
 
 // Con try...catch possiamo gestire gli errori
 
 try {
   // Blocco di codice che potrebbe generare errori
-  console.log(divisione(10, 0));
+  console.log(divisione(10));
 } catch (errore) {
   // Questo codice viene eseguito solo se c'è un errore
-  console.error("Errore catturato:", errore.message); // Errore catturato: Non puoi dividere per zero!
+  console.error("Errore catturato:", errore.message);
+  // Errore catturato: Non puoi dividere per zero!
 }
 
 // L’esecuzione del codice continua dopo il blocco try...catch
@@ -70,7 +92,8 @@ try {
 function operazionePericolosa() {
   try {
     console.log("Inizio operazione pericolosa");
-    throw new Error("Qualcosa è andato storto!");
+    //throw new Error("Qualcosa è andato storto!");
+    console.log("Operazione completata con successo");
   } catch (errore) {
     console.error("Errore catturato:", errore.message);
   } finally {

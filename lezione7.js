@@ -22,7 +22,7 @@ console.log(numeri[2]); // INDICIZZAZIONE ZERO: stamperà 34
 
 //Tipi misti: gli array possono contenere elementi di tipi diversi. Ad esempio, puoi avere un array che contiene numeri e stringhe:
 
-const mixed = [1, "due", 3, "quattro"];
+const mixed = [1, "due", 3, "quattro", 5, 9];
 
 //Dinamismo: gli array possono crescere e ridursi dinamicamente, è possibile modificare, aggiungere o rimuovere elementi in qualsiasi momento
 
@@ -38,7 +38,7 @@ console.log(str.length); // 4
 //I metodi base per manipolare un Array
 
 //.join()
-console.log(mixed.join("-")); //stamperà tutti gli elementi del mio array separati dal trattino 1due3quattro
+console.log(mixed.join("-")); //stamperà tutti gli elementi del mio array separati dal trattino 1-due-3-quattro
 
 //.push()
 //aggiunge elementi alla fine
@@ -74,7 +74,7 @@ console.log(nomi.sort((a, b) => a.length - b.length)); //nel caso di array di st
 
 //.find() & .includes()
 //Restituisce il primo elemento che soddisfa la condizione specificata dalla funzione di callback
-console.log(numeri.find((num) => num > 20)); //restituisce il primo numero che soddisfa la condizione num > 20 (ovviamente si riferisce all'array ordinato alla riga 69)
+console.log(numeri.find((num) => num > 20)); //restituisce il primo numero che soddisfa la condizione num > 20 (ovviamente si riferisce all'array ordinato alla riga 72)
 console.log(numeri.includes(34)); //true
 console.log(nomi.find((str) => str.includes("L"))); //il metodo find in combinazione con .includes() mi permette di farmi restituire il primo elemento che contiene il valore passato al metodo includes
 //**ATTENZIONE** il metodo includes restituisce sempre un valore o true o false e mi permette di verificare se esiste un dato elemento all'interno di un array es:
@@ -108,7 +108,8 @@ console.log(newNumeriMap);
 //.forEach()
 //.forEach() esegue una funzione su ogni elemento dell'array. A differenza di map, forEach non restituisce un nuovo array, ma esegue una funzione su ogni elemento.
 
-nomi.forEach((nome, index) => console.log(`${nome}${index + 1}`)); //esegue un ciclo sull'array ed esegue la funzione data tante volte quanti sono gli elementi. Può accettare parametri come l'elemento dell'array e il suo indice o nessuno:
+nomi.push("paola").forEach((nome, index) => console.log(`${nome}${index + 1}`)); //esegue un ciclo sull'array ed esegue la funzione data tante volte quanti sono gli elementi. Può accettare parametri come l'elemento dell'array e il suo indice o nessuno:
+
 nomi.forEach((x, y) => console.log(x));
 
 //.reduce()
@@ -132,6 +133,10 @@ const concat = nomi.reduce(
   (acc, cur, n) => acc + "-" + cur + (93 + n + 1), //n è l'indice dell'elelemento su cui stiamo iterando
   "Paolo93"
 );
+//1 acc="Paolo93" + cur="Mario" + 93 + n=0 + 1 = "Paolo93-Mario94"
+//2 acc="Paolo93-Mario94" + cur="Luca" + 93 + n=1 + 1 = "Paolo93-Mario94-Luca95"
+//3 acc="Paolo93-Mario94-Luca95" + cur="Giulia" + 93 n=2 + 1 = "Paolo93-Mario94-Luca95-Giulia96"
+//4 acc="Paolo93-Mario94-Luca95-Giulia96" + cur="Paola" + 93 + n=3 + 1 = "Paolo93-Mario94-Luca95-Giulia96-Paola97"
 const concat2 = nomi.reduce((acc, cur) => acc + cur);
 console.log(concat2); //LucaGiuliaMario
 console.log(concat); //Paolo93-Luca94-Mario95-Giulia96
@@ -141,10 +146,13 @@ console.log(concat); //Paolo93-Luca94-Mario95-Giulia96
 
 const frutti = ["mela", "banana", "mela", "arancia", "banana"];
 const conteggioOccorrenze = frutti.reduce((acc, cur) => {
-  acc[cur] = (acc[cur] || 0) + 1;
+  //obj[key] = value
+  acc[cur] = (acc[cur] || 0) + 1; //acc[cur] è l'oggetto acc che contiene le chiavi corrispondenti ai frutti e i valori corrispondenti al numero di volte che quel frutto appare nell'array. Se acc[cur] non esiste, viene inizializzato a 0, altrimenti viene incrementato di 1.
+  //Quindi, se l'oggetto acc non ha ancora una chiave corrispondente al frutto corrente (cur), viene inizializzato a 0, altrimenti il valore esistente viene incrementato di 1.
+  //In questo modo, alla fine del ciclo, acc conterrà un oggetto con le chiavi corrispondenti ai frutti e i valori corrispondenti al numero di volte che quel frutto appare nell'array.
   return acc;
 }, {}); // All'inizio, acc è un oggetto vuoto {}, ad ogni interazione viene aggiunto una chiave che corrisponde al frutto presente nell'array, e come valore quante volte viene ripetuto(partendo da zero e incrementando ad ogni interazione il valore di 1).
-console.log(conteggioOccorrenze);
+console.log(conteggioOccorrenze); //{ mela: 1, banana: 2, arancia: 1 }
 
 //Ancora associato ad array di oggetti:
 
