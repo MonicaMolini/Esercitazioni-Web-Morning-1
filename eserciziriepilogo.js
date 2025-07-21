@@ -69,3 +69,50 @@
 // Scrivi una funzione getDishRating che accetti il nome di un piatto e calcoli la valutazione media.
 // Seleziona il piatto giusto con find, e poi usa map e reduce per ottenere la media delle recensioni.
 // Ritorna il risultato in una template string: “La valutazione media per [name] è [media] stelle.”
+
+// Esercizio 10: Sistema di Recensioni per un Ristorante
+// Un ristorante ha un array dishes con oggetti che rappresentano i piatti e le recensioni associate, ognuno con name, price, e un array reviews con rating e comment.
+// Scrivi una funzione getDishRating che accetti il nome di un piatto e calcoli la valutazione media.
+// Seleziona il piatto giusto con find, e poi usa map e reduce per ottenere la media delle recensioni.
+// Ritorna il risultato in una template string: “La valutazione media per [name] è [media] stelle.”
+
+const dishes = [
+  {
+    name: "Pizza Margherita",
+    price: 8.5,
+    reviews: [
+      { rating: 5, comment: "Deliziosa!" },
+      { rating: 4, comment: "Buona ma un po' troppo cotta." },
+    ],
+  },
+  {
+    name: "Lasagna",
+    price: 12,
+    reviews: [
+      { rating: 5, comment: "Perfetta!" },
+      { rating: 5, comment: "Eccezionale!" },
+      { rating: 4, comment: "Molto buona!" },
+    ],
+  },
+  {
+    name: "Insalata Caprese",
+    price: 7,
+    reviews: [
+      { rating: 3, comment: "Troppo semplice." },
+      { rating: 4, comment: "Fresca e gustosa." },
+    ],
+  },
+];
+
+function getDishRating(dish) {
+  const piatto = dishes.find(
+    (piatto) => piatto.name.toLowerCase() === dish.toLowerCase()
+  );
+  const media =
+    piatto.reviews.reduce((a, cur) => a + cur.rating, 0) /
+    piatto.reviews.length;
+  return media;
+}
+console.log(getDishRating("lasagna"));
+
+// la funzione non deve accettare solo il nome del piatto ma anche l'aaray di piatti utilizzando il decostruttore quando possibile!.
