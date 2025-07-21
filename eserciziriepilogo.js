@@ -59,10 +59,10 @@ const events = [
 ];
 function checkAvailability(sogliaNumerica) {
   return events
-    .filter((event) => event.availableTickets > sogliaNumerica)
+    .filter(({ availableTickets }) => availableTickets > sogliaNumerica)
     .map(
-      (event) =>
-        event.name + ", " + event.date + ", " + event.availableTickets + "."
+      ({ name, date, availableTickets }) =>
+        name + ", " + date + ", " + availableTickets + "."
     );
 }
 console.log(checkAvailability(46));
@@ -82,7 +82,7 @@ const employees = [
 
 function getDepartmentStats(department) {
   const numeroDipartimenti = employees.filter(
-    (employee) => employee.department === department
+    ({ department }) => department === department
   );
   const media =
     numeroDipartimenti.reduce((acc, cur) => acc + cur.salary, 0) /
@@ -127,13 +127,10 @@ const reservations = [
 function filterReservations(data, ospiti) {
   if (Array.isArray(reservations)) {
     return reservations
-      .filter(
-        (reservation) =>
-          reservation.date === data && reservation.guests >= ospiti
-      )
+      .filter(({ date, guests }) => date === data && guests >= ospiti)
       .map(
-        (reservation) =>
-          `Prenotato da: ${reservation.name}, in data: ${reservation.date}, per n° ospiti: ${reservation.guests}`
+        ({ name, date, guests }) =>
+          `Prenotato da: ${name}, in data: ${date}, per n° ospiti: ${guests}`
       );
   } else {
     console.error("ERRORE");
@@ -187,8 +184,8 @@ function getTasksSummary(tasks) {
     0
   );
   const taskPrioritarie = tasks
-    .filter((task) => task.priority > 7)
-    .map((task) => ` ${task.description}`);
+    .filter(({ priority }) => priority > 7)
+    .map(({ description }) => ` ${description}`);
   const risultato = `il numero totale di tasks è: ${numeroTotaleTasks},
   il numero di tasks complete è: ${tasksComplete},
   il numero di tasks incomplete è: ${taskIncomplete},
@@ -229,7 +226,7 @@ const reviews = [
 
 function averageRating(reviews, productId) {
   const productFilter = reviews.filter(
-    (review) => review.productId === productId
+    ({ productId }) => productId === productId
   );
   if (productFilter.length === 0) {
     return `Nessuna recensione trovata per il prodotto ${productId}`;
@@ -266,7 +263,7 @@ function topSales(sales) {
   return sales
     .sort((a, b) => b.amount - a.amount)
     .slice(0, 5)
-    .map((sale) => `${sale.product}: ${sale.amount}€`);
+    .map(({ product, amount }) => `${product}: ${amount}€`);
 }
 console.log(topSales(sales));
 console.log("---------------------------------");
@@ -294,9 +291,13 @@ function portfolioSummary(investments) {
   const totale = investments.reduce(
     (acc, cur) => acc + cur.pricePerShare * cur.shares, 0);
   const singoliInvestimenti = investments.map(
-    (investment) => `Simbolo: ${
-      investment.stockSymbol
-    } - Investimento Singolo: ${investment.shares * investment.pricePerShare}
+    ({
+      stockSymbol,
+      shares,
+      pricePerShare,
+    }) => `Simbolo: ${stockSymbol} - Investimento Singolo: ${
+      shares * pricePerShare
+    }
   ---`
   );
   singoliInvestimenti.forEach((investment) => console.log(investment));
