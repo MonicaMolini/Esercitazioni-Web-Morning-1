@@ -242,14 +242,14 @@ const prodotti = [
   { nome: "Scarpe", prezzo: 60 },
 ];
 
-let totale = 0
-function calcolaTotale(){
-  for (const prodotto of prodotti){
-    totale += prodotto.prezzo
+let totale = 0;
+function calcolaTotale() {
+  for (const prodotto of prodotti) {
+    totale += prodotto.prezzo;
   }
   return totale;
 }
-console.log(calcolaTotale())
+console.log(calcolaTotale());
 
 // ESERCIZIO 10 CON FOR NORMALE
 function calcolaTotale() {
@@ -259,7 +259,7 @@ function calcolaTotale() {
   }
   return totale;
 }
-console.log(calcolaTotale())
+console.log(calcolaTotale());
 // ESERCIZIO 11
 // Istanzia 4 oggetti `Persona` dell'esercizio 4.
 // Inseriscili in un array 'persone'
@@ -281,13 +281,33 @@ class Persona {
   }
 
   presentati() {
-    console.log("Mi chiamo " + this.nome + " " + this.cognome + " e ho " + this.eta + " anni");
+    console.log(
+      "Mi chiamo " +
+        this.nome +
+        " " +
+        this.cognome +
+        " e ho " +
+        this.eta +
+        " anni"
+    );
   }
 }
 
-let persona1 = new Persona("Mario", "Rossi",10, "mario@gmail.com", "+111111111");
-let persona2 = new Persona("Anna", "Rossi", 20, "anna@egmail.com", "+222222222");
-let persona3 = new Persona("Luca", "Rossi", 30, "luca@gmail.com", "+333333333"); 
+let persona1 = new Persona(
+  "Mario",
+  "Rossi",
+  10,
+  "mario@gmail.com",
+  "+111111111"
+);
+let persona2 = new Persona(
+  "Anna",
+  "Rossi",
+  20,
+  "anna@egmail.com",
+  "+222222222"
+);
+let persona3 = new Persona("Luca", "Rossi", 30, "luca@gmail.com", "+333333333");
 let persona4 = new Persona("Sara", "Rossi", 40, "sara@gmail.com", "+444444444");
 
 let persone = [persona1, persona2, persona3, persona4];
@@ -311,7 +331,6 @@ function checkPerson(persona) {
     console.log("Utente registrato: " + persona.nome + " " + persona.cognome);
   }
 }
-
 
 let indiceCasuale = Math.floor(Math.random() * persone.length);
 let personaCasuale = persone[indiceCasuale];
