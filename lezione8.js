@@ -139,6 +139,33 @@ const personaRest = {
   paese: "Italia",
   citta: "Palermo",
 };
-printRestParameter(personaRest);
+printRestParameter(...personaRest);
 // Nome: Monica
 // Altri parametri: { eta: 31, paese: 'Italia', citta: 'Palermo' }
+
+//Lo spread operator
+//Lo spread operator è simile al rest parameter ma viene utilizzato per espandere un array o un oggetto in un altro array o oggetto
+const numbersArray = [1, 2, 3];
+const newArray = [...numbersArray, 4, 5, 6]; // Espande l'array e aggiunge nuovi elementi
+console.log(newArray); // [1, 2, 3, 4, 5, 6]
+
+// Può essere usato anche per unire due array
+const array1 = [1, 2, 3];
+const array2 = [4, 5, 6];
+const mergedArray = [...array1, ...array2]; // Unisce i due array
+console.log(mergedArray); // [1, 2, 3, 4, 5, 6]
+// Può essere usato anche per copiare un array
+const copiedArray = [...numbersArray]; // Crea una copia dell'array
+//
+console.log(copiedArray); // [1, 2, 3]
+
+// Può essere usato anche per unire due oggetti
+const personFirst = { nome: "Monica", eta: 31 };
+const personSecond = { nome: "francesca", paese: "Italia", citta: "Palermo" };
+const mergedPerson = { ...personFirst, ...personSecond }; // Unisce i due oggetti
+console.log(mergedPerson); // { nome: 'Monica', eta: 31, paese: 'Italia', citta: 'Palermo' }
+// Può essere usato anche per copiare un oggetto
+const copiedPerson = { ...personFirst }; // Crea una copia dell'oggetto cosa che non è possibile fare con l'assegnazione diretta
+copiedPerson.nome = "Francesca"; // Modifica la copia senza influenzare l'originale
+copiedPerson.eta = 31; // Modifica la copia senza influenzare l'originale
+console.log(copiedPerson); // { nome: 'Monica', eta: 31 }
