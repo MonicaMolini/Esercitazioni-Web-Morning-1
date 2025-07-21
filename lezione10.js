@@ -17,7 +17,7 @@
   CALLBACK
   Una callback è una funzione passata come argomento ad un’altra funzione, che verrà eseguita al momento giusto.
   È il meccanismo più comune per gestire operazioni asincrone prima dell’introduzione delle Promises e async/await.
-
+ 
   CALLBACK HELL
   Quando le callback vengono annidate troppo (es. una dentro l’altra), il codice diventa difficile da leggere e mantenere.
   Questo fenomeno è chiamato "callback hell" o "pyramid of doom".
@@ -26,13 +26,13 @@
   Per evitare il callback hell si usano Promise o async/await, che rendono il codice asincrono più lineare e leggibile.
 */
 
-// setTimeout – ritarda l'esecuzione di una funzione
+// setTimeout – ritarda l'esecuzione di una funzion
 
 console.log("Inizio");
-
-setTimeout(() => {
-  console.log("Dopo 2 secondi");
-}, 2000);
+function print() {
+  console.log("Esecuzione dopo 2 secondi");
+}
+setTimeout(print, 2000);
 
 console.log("Fine");
 
@@ -49,10 +49,18 @@ const intervallo = setInterval(() => {
   console.log(`Contatore: ${contatore}`);
   contatore++;
 
-  if (contatore > 3) {
+  if (contatore > 200) {
     clearInterval(intervallo); // Ferma il setInterval
   }
 }, 1000);
+
+setTimeout(() => {
+  clearInterval(intervallo);
+}, 2000);
+
+// setInterval(() => {
+//   console.log("operazione infinita");
+// }, 1000);
 
 // Output:
 // Contatore: 1
