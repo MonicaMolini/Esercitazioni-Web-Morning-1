@@ -3,12 +3,53 @@
 // Usa il destructuring per accedere ai valori e avvia un setInterval che stampa un numero ogni secondo,
 // da start a end. Al termine, stampa "Fine conto alla rovescia" e ferma l'intervallo.
 // Testa la funzione con un oggetto creato da te.
+const intervallo = {
+  start: 0,
+  end: 5,
+};
+function startCountdown({ start, end }) {
+  let timer = setInterval(() => {
+    console.log(start);
+    if (start === end) {
+      clearTimeout(timer);
+      console.log("Fine conto alla rovescia");
+    }
+    start++;
+  }, 1000);
+}
+//startCountdown(intervallo);
+//oppure farlo dichiarando current = start modificando start con current dove necessario
 
 // Esercizio 2: Messaggio Ritardato con destructuring e setTimeout
 // Crea una funzione delayedMessage che accetta un oggetto con proprietà message e delay .
 // Usa il destructuring per ottenere le proprietà e stampa il messaggio dopo 'delay' millisecondi.
 // Testa la funzione passando un oggetto creato da te che non contiene nessuna delle due chiavi richieste.
 // Che problema nasce? Come possiamo fixare questo problema? trova le soluzioni migliori per evitare errori in fase di esecuzione.
+const messaggio = {
+  message: "Questo è un messaggio",
+  delay: 2000,
+};
+
+const messaggio2 = {
+  dicitura: "Questa è una dicitura",
+  ritardo: 3000,
+};
+
+function delayedMessage({ message, delay }) {
+  if (!message || !delay) {
+    throw new Error("I paramentri non sono validi");
+  }
+  setTimeout(() => {
+    console.log(message);
+  }, delay);
+}
+delayedMessage(messaggio);
+
+try {
+  delayedMessage(messaggio2);
+} catch (errore) {
+  console.error(errore.message);
+}
 
 // Esercizio 3: Somma con rest parameter e spread operator
 // Scrivi una funzione sumAll che accetta un numero indefinito di parametri numerici.
