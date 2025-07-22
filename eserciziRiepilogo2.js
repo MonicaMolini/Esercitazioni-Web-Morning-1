@@ -49,6 +49,25 @@ function delayedMessage({
 // Usa reduce per sommarli e ritorna il totale.
 // Poi crea un array di numeri e usalo con lo spread operator per invocare la funzione.
 // Passa anche un array misto con numeri e stringhe, e gestisci eventuali errori di tipo.
+function sumAll(...numbers) {
+  if (numbers.some((number) => typeof number !== "number")) {
+    throw new Error("Parametri non validi");
+  }
+  const totale = numbers.reduce((acc, cur) => acc + cur, 0);
+  return totale;
+}
+
+const numeri = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const misto = [1, 2, 3, 4, "ciao", 8, "b"];
+
+try {
+  sumAll(...misto);
+} catch (error) {
+  console.error(error.message);
+}
+
+console.log(sumAll(1, 2, 30, 4, 54, 6));
+console.log(sumAll(...numeri));
 
 // Esercizio 4: Unione di Liste Utenti con spread e destructuring
 // Hai i seguenti array di utenti, ciascuno con oggetti { name, email }.
