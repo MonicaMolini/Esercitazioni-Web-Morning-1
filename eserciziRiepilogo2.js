@@ -71,6 +71,9 @@ console.log(sumAll(...numeri));
 
 // Esercizio 4: Unione di Liste Utenti con spread e destructuring
 // Hai i seguenti array di utenti, ciascuno con oggetti { name, email }.
+// Uniscili in un unico array con lo spread operator e stampa ogni utente con una template string,
+// usando il destructuring direttamente nei parametri della funzione di map.
+// Assicurati di gestire eventuali utenti con email duplicata facendo restare solo il primo utente con quella email e restituendo gli altri con un messaggio di avviso.
 let users1 = [
   { name: "Alice", email: "alice@gmail.it" },
   { name: "Bob", email: "bob@gmail.it" },
@@ -83,13 +86,32 @@ let users2 = [
   { name: "Bobby", email: "bob@gmail.it" },
   { name: "Floriana", email: "123@gmail.it" },
 ];
-// Uniscili in un unico array con lo spread operator e stampa ogni utente con una template string,
-// usando il destructuring direttamente nei parametri della funzione di map.
-// Assicurati di gestire eventuali utenti con email duplicata facendo restare solo il primo utente con quella email e restituendo gli altri con un messaggio di avviso.
 
+const users3 = [...users1, ...users2];
+const usersTotale = users3.map(({ name, email }) => `${name} , ${email}`);
+const arrayDefinitivo = [];
+users3.forEach((x) => {
+  const userExist = arrayDefinitivo.some((y) => y.email === x.email);
+  if (!userExist) {
+    arrayDefinitivo.push(x);
+  }
+});
+console.log(arrayDefinitivo);
 // Esercizio 5: Profilo Utente Unificato
 // Hai due oggetti: userInfo e userPrefs. Uniscili in un nuovo oggetto con lo spread operator.
 // Usa il destructuring per estrarre le proprietà name, email e theme, e stampale in una frase con template string.
+const userInfo = {
+  name: "Federico",
+  email: "federicocirella1997@gmail.com",
+};
+
+const userPrefs = {
+  theme: "Dark-mode",
+};
+
+const user = { ...userInfo, ...userPrefs };
+const { name, email, theme } = user;
+console.log(`${name} , ${email} , ${theme}`);
 
 // Esercizio 6: Stampa di Lettere Ritardata
 // Scrivi una funzione countLetters che accetta una stringa.
