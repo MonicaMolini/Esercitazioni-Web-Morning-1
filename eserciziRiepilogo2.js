@@ -35,22 +35,15 @@ const messaggio2 = {
   ritardo: 3000,
 };
 
-function delayedMessage({ message, delay }) {
-  if (!message || !delay) {
-    throw new Error("I paramentri non sono validi");
-  }
+function delayedMessage({
+  message = "Questo è un messaggio di default",
+  delay = 1000,
+}) {
   setTimeout(() => {
     console.log(message);
   }, delay);
 }
-delayedMessage(messaggio);
-
-try {
-  delayedMessage(messaggio2);
-} catch (errore) {
-  console.error(errore.message);
-}
-
+//delayedMessage(messaggio);
 // Esercizio 3: Somma con rest parameter e spread operator
 // Scrivi una funzione sumAll che accetta un numero indefinito di parametri numerici.
 // Usa reduce per sommarli e ritorna il totale.
