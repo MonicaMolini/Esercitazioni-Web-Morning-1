@@ -111,13 +111,23 @@ const userPrefs = {
 
 const user = { ...userInfo, ...userPrefs };
 const { name, email, theme } = user;
-console.log(`${name} , ${email} , ${theme}`);
+console.log(
+  `L'user ${name}, con email: ${email}, preferisce la modalità ${theme}`
+);
 
 // Esercizio 6: Stampa di Lettere Ritardata
 // Scrivi una funzione countLetters che accetta una stringa.
 // Per ogni lettera della stringa, usa setTimeout (con moltiplicatore dell'indice) per stamparla con il suo indice,
 // usando Object.entries() e destructuring per accedere a [indice, lettera].
-
+const parola = "ciao";
+function countLetters(parola) {
+  const lettere = parola.split("");
+  Object.entries(lettere).forEach(([indice, lettera]) => {
+    const ritardo = Number(indice) * 1000;
+    setTimeout(() => console.log(lettera), ritardo);
+  });
+}
+countLetters("ciao");
 // Esercizio 7: Timer con Etichetta e Countdown
 // Crea una funzione startTimer che accetta un oggetto con proprietà seconds e label .
 // Ogni secondo stampa "label: X secondi rimasti".
