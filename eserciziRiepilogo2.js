@@ -133,17 +133,59 @@ countLetters("ciao");
 // Ogni secondo stampa "label: X secondi rimasti".
 // Usa destructuring, setInterval e interrompi il timer quando seconds arriva a 0.
 // gestisci il caso in cui l'oggetto non contiene le chiavi richieste, evitando errori di esecuzione.
+const timer = {
+  seconds: 30,
+  label: "Timer di 30 secondi",
+};
+function startTimer({ seconds, label }) {
+  if (typeof seconds !== "number" || typeof label !== "string") {
+    throw new Error("Metti il giusto parametro");
+  }
+  const id = setInterval(() => {
+    if (seconds === 0) {
+      clearInterval(id);
+    }
+    console.log(`${label}: ${seconds} secondi rimasti`);
+    seconds--;
+  }, 1000);
+}
+try {
+  startTimer(timer);
+} catch (error) {
+  console.error(error.message);
+}
 
 // Esercizio 8: Totale Prodotto da Oggetti Unificati
 // Hai due oggetti: uno con { id, name } e uno con { price, quantity }.
 // Uniscili con lo spread operator e usa il destructuring per calcolare e stampare il totale (price * quantity).
 // assegna un prezzo di default di 10 e una quantità di default di 1 se non presenti nell'oggetto.
+const productInfo = { id: 1, name: "Penna" };
+const productStock = { price: 1.5, quantity: 100 };
 
+const productStats = {
+  ...productInfo,
+  ...productStock,
+};
+const { price = 10, quantity = 1 } = productStats;
+const totale = price * quantity;
+
+console.log(totale);
 // Esercizio 9: Statistiche da Array con destructuring e rest
 // Scrivi una funzione quickStats che accetta un oggetto { scores }.
 // Estrai il primo punteggio e il resto usando destructuring e rest parameter.
 // Calcola la somma totale e stampa tutto con una template string.
+const datiGiocatore = {
+  scores: [90, 85, 78, 92, 88],
+};
 
+function quickStats({ scores }) {
+  const [primo, ...rest] = scores;
+  const totale = scores.reduce((acc, cur) => acc + cur, 0);
+  console.log(`Questo è il primo punteggio: ${primo}`);
+  console.log(`Questo è il resto dei punteggi: ${rest}`);
+  console.log(`Questo è il totale: ${totale}`);
+}
+quickStats(datiGiocatore);
 // Esercizio 10: Estrai Numeri Validi da un Array Misto
 // Scrivi una funzione filterNumbers che accetta un array contenente elementi misti (numeri, stringhe, boolean, null, ecc).
 // Usa filter per selezionare solo i numeri validi (typeof === 'number').
