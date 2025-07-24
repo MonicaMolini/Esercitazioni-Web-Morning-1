@@ -4,11 +4,33 @@
 // da start a end. Al termine, stampa "Fine conto alla rovescia" e ferma l'intervallo.
 // Testa la funzione con un oggetto creato da te.
 
+// const intervalloo = {
+//   start: 5,
+//   end: 15,
+// };
+// const intervalloo2 = {
+//   start: 9,
+//   end: 18,
+// };
+// function startCountdown({ start, end }) {
+//   let current = start;
+//   const interval = setInterval(() => {
+//     console.log(current);
+//     if (current >= end) {
+//       clearInterval(interval);
+//       console.log("Fine conto alla rovescia");
+//     }
+//     current++;
+//   }, 1000);
+// }
+// startCountdown(intervalloo2);
 // Esercizio 2: Messaggio Ritardato con destructuring e setTimeout
 // Crea una funzione delayedMessage che accetta un oggetto con proprietà message e delay .
 // Usa il destructuring per ottenere le proprietà e stampa il messaggio dopo 'delay' millisecondi.
 // Testa la funzione passando un oggetto creato da te che non contiene nessuna delle due chiavi richieste.
 // Che problema nasce? Come possiamo fixare questo problema? trova le soluzioni migliori per evitare errori in fase di esecuzione.
+
+// function delayedMessage() {}
 
 // Esercizio 3: Somma con rest parameter e spread operator
 // Scrivi una funzione sumAll che accetta un numero indefinito di parametri numerici.
@@ -18,31 +40,66 @@
 
 // Esercizio 4: Unione di Liste Utenti con spread e destructuring
 // Hai i seguenti array di utenti, ciascuno con oggetti { name, email }.
-let users1 = [
-  { name: "Alice", email: "alice@gmail.it" },
-  { name: "Bob", email: "bob@gmail.it" },
-  { name: "Marco", email: "123@gmail.it" },
-  { name: "Francesca", email: "fra_98@gmail.it" },
-  { name: "Piero", email: "pier98@gmail.it" },
-];
-let users2 = [
-  { name: "Vera", email: "vera@gmail.it" },
-  { name: "Bobby", email: "bob@gmail.it" },
-  { name: "Floriana", email: "123@gmail.it" },
-];
+// let users1 = [
+//   { name: "Alice", email: "alice@gmail.it" },
+//   { name: "Bob", email: "bob@gmail.it" },
+//   { name: "Marco", email: "123@gmail.it" },
+//   { name: "Francesca", email: "fra_98@gmail.it" },
+//   { name: "Piero", email: "pier98@gmail.it" },
+// ];
+// let users2 = [
+//   { name: "Vera", email: "vera@gmail.it" },
+//   { name: "Bobby", email: "bob@gmail.it" },
+//   { name: "Floriana", email: "123@gmail.it" },
+// ];
 // Uniscili in un unico array con lo spread operator e stampa ogni utente con una template string,
 // usando il destructuring direttamente nei parametri della funzione di map.
 // Assicurati di gestire eventuali utenti con email duplicata facendo restare solo il primo utente con quella email e restituendo gli altri con un messaggio di avviso.
 
+// const user = [...users1, ...users2];
+// const userTotale = user.map(({ name, email }) => `${name} , ${email}`);
+// console.log(userTotale);
+// const arrayDefinitivo = [];
+// user.forEach((x) => {
+//   const userExist = arrayDefinitivo.some((y) => y.email === x.email);
+//   if (!userExist) {
+//     arrayDefinitivo.push(x);
+//   } else {
+//     console.log(` utente ${x.email} gia esiste`);
+//   }
+// });
+// console.log(arrayDefinitivo);
 // Esercizio 5: Profilo Utente Unificato
 // Hai due oggetti: userInfo e userPrefs. Uniscili in un nuovo oggetto con lo spread operator.
 // Usa il destructuring per estrarre le proprietà name, email e theme, e stampale in una frase con template string.
+
+// const userInfo = {
+//   name: "mario",
+//   email: "pier98@gmail.it",
+// };
+// const userPrefs = {
+//   theme: "dark mode",
+// };
+
+// const userFinale = { ...userInfo, ...userPrefs };
+// const { name, email, theme } = userFinale;
+// console.log(`utente: ${name}, email : ${email}, theme : ${theme}`);
 
 // Esercizio 6: Stampa di Lettere Ritardata
 // Scrivi una funzione countLetters che accetta una stringa.
 // Per ogni lettera della stringa, usa setTimeout (con moltiplicatore dell'indice) per stamparla con il suo indice,
 // usando Object.entries() e destructuring per accedere a [indice, lettera].
 
+function countLetters(str) {
+  const letter = [...str];
+  const entries = Object.entries(letter);
+  for (const [letter, index] of entries) {
+    setTimeout(() => {
+      console.log(`indice : ${index}, lettera : ${letter}`);
+    }, index * 5000);
+  }
+}
+countLetters("Fratè");
 // Esercizio 7: Timer con Etichetta e Countdown
 // Crea una funzione startTimer che accetta un oggetto con proprietà seconds e label .
 // Ogni secondo stampa "label: X secondi rimasti".
