@@ -192,3 +192,34 @@ quickStats(datiGiocatore);
 // Se l'array passato non è un array, ritorna un errore bloccante.
 // Alla fine, stampa quanti numeri sono stati trovati e mostra i primi due con il destructuring.
 // Infine invoca la funzione gestendo eventuali errori con try...catch e stampa un messaggio chiaro.
+const elementiMisti = [
+  42,
+  "ciao",
+  true,
+  null,
+  undefined,
+  { nome: "Luca" },
+  [1, 2, 3],
+  function () {
+    return "Funzione!";
+  },
+];
+
+function filterNumbers(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error("Array non valido!");
+  }
+  const numeri = arr.filter((x) => typeof x === "number");
+  if (numeri.length === 0) {
+    throw new Error("Nessun numero trovato nell'array!");
+  }
+  console.log(`Sono stati trovati ${numeri.length} numeri`);
+  const [primo, secondo, ...rest] = numeri;
+  console.log(primo, secondo, ...rest);
+}
+try {
+  filterNumbers(elementiMisti);
+} catch (error) {
+  console.error(error.message);
+}
+filterNumbers("ciao", null, undefined); //erore bloccante gestito
