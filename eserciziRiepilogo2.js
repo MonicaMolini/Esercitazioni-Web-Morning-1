@@ -90,16 +90,16 @@
 // Per ogni lettera della stringa, usa setTimeout (con moltiplicatore dell'indice) per stamparla con il suo indice,
 // usando Object.entries() e destructuring per accedere a [indice, lettera].
 
-function countLetters(str) {
-  const letter = [...str];
-  const entries = Object.entries(letter);
-  for (const [letter, index] of entries) {
-    setTimeout(() => {
-      console.log(`indice : ${index}, lettera : ${letter}`);
-    }, index * 5000);
-  }
-}
-countLetters("Fratè");
+// function countLetters(str) {
+//   const letter = [...str];
+//   const entries = Object.entries(letter);
+//   for (const [letter, index] of entries) {
+//     setTimeout(() => {
+//       console.log(`indice : ${index}, lettera : ${letter}`);
+//     }, index * 1000);
+//   }
+// }
+// countLetters("Ciao");
 // Esercizio 7: Timer con Etichetta e Countdown
 // Crea una funzione startTimer che accetta un oggetto con proprietà seconds e label .
 // Ogni secondo stampa "label: X secondi rimasti".
@@ -122,3 +122,39 @@ countLetters("Fratè");
 // Se l'array passato non è un array, ritorna un errore bloccante.
 // Alla fine, stampa quanti numeri sono stati trovati e mostra i primi due con il destructuring.
 // Infine invoca la funzione gestendo eventuali errori con try...catch e stampa un messaggio chiaro.
+
+const arrayMisto = [
+  42, // valido
+  "ciao", // stringa
+  true, // boolean
+  null, // null
+  3.14, // valido
+  NaN, // non valido
+  undefined, // undefined
+  -100, // valido
+  "123", // stringa
+  {}, // oggetto
+  [], // array vuoto
+  Infinity, // non valido
+  -Infinity, // non valido
+  0, // valido
+  false, // boolean
+  "0", // stringa
+  Number("5"), // valido
+  Number("ciao"), // NaN -> non valido
+];
+
+function filterNumbers(arr) {
+  if (!Array.isArray) {
+    throw new error("il parametro selezionato non è un array");
+  }
+  const numeri = arr.filter((x) => typeof x === "number" && Number.isFinite(x));
+  console.log(`sono stati trovati ${numeri.length} numeri`);
+  const [primo, secondo, ...rest] = numeri;
+  console.log("primi 2 numeri sono : ", primo, secondo);
+}
+try {
+  filterNumbers(arrayMisto);
+} catch (error) {
+  console.error("Errore:", error.message);
+}
