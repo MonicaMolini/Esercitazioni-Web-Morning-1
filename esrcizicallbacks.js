@@ -17,10 +17,7 @@ Non serve quindi sapere cosa fa la funzione ricevuta, ma solo assicurarsi che ve
 function restituisciRisultato(a, callback) {
   return callback(a);
 }
-function aggiungi(a) {
-  return a + 2;
-}
-console.log(restituisciRisultato(2, aggiungi));
+
 // ESERCIZIO 2
 // Scrivi una funzione che prende una lista di numeri e una funzione modificatrice.
 // Deve restituire una nuova lista dove ogni numero è stato trasformato secondo la logica della funzione ricevuta.
@@ -71,8 +68,30 @@ function nuoviNumeri(numeri, callback) {
 // ESERCIZIO 8
 // Scrivi una funzione che riceve una lista di oggetti e una funzione di categorizzazione.
 // Deve restituire un oggetto in cui i dati sono raggruppati per categoria, e ogni gruppo è stato elaborato secondo la funzione passata.
-function elaborazione(oggetti, callback) {
-  oggetti.reduce((acc, cur) => {});
+function elaborazione(oggetti, callback, categoria) {
+  const result = {};
+  oggetti.forEach((oggetto) => {
+    const category = oggetto[categoria];
+    const oggettoModificato = callback(oggetto);
+    if (!result[category]) {
+      result[category] = [];
+    }
+    result[category].push(oggettoModificato);
+  });
+  return result;
+}
+
+//VARIANTE 2
+function elaborazione(oggetti, callback, categoria) {
+  return oggetti.reduce((acc, cur) => {
+    const category = cur[categoria];
+    const oggettoModificato = callback(cur);
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(oggettoModificato);
+    return acc;
+  }, {});
 }
 
 // ESERCIZIO 9
@@ -84,11 +103,25 @@ function concatena(lista, funzioni) {
   return lista.map((item) => funzioni.reduce((acc, cur) => cur(acc), item));
 }
 
+//VARIANTE 1
+function concatena(lista, funzioni) {
+  return lista.filter((x) => funzioni.every((y) => y(x)));
+}
+//VARIANTE 2
+function concatena(lista, funzioni) {
+  let result = [];
+  lista.forEach((x) => {
+    funzioni.forEach((y) => y(x));
+    result.push(x);
+  });
+  return result;
+}
+
 // ESERCIZIO 10
 // Scrivi una funzione che prende un array complesso (es. lista di oggetti con array annidati) e una funzione di estrazione personalizzata.
 // Deve restituire un array semplificato che unisce, trasforma e filtra i dati secondo la logica definita dalla funzione passata.
 function semplifica(array, callback) {
-  return array.map((arr) => callback(arr));
+  return array.flatMap((arr) => callback(arr));
 }
 
 // Esercizio 11
@@ -96,3 +129,6 @@ function semplifica(array, callback) {
 // - una lista iniziale di dati
 // - una sequenza di moduli (funzioni) trasformative
 // Ogni modulo elabora la lista e la passa al successivo. Alla fine restituisci la lista finale elaborata.
+function elaboraPipeline(dati, funzioni) {
+  return funzioni.reduce((acc, cur) => cur(acc), dati);
+}
