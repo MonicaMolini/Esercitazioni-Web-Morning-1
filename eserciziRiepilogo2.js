@@ -96,6 +96,25 @@ console.log(arrayDefinitivo)
 // Hai due oggetti: userInfo e userPrefs. Uniscili in un nuovo oggetto con lo spread operator.
 // Usa il destructuring per estrarre le proprietà name, email e theme, e stampale in una frase con template string.
 
+const userInfo = {
+  name: "Luca Rossi",
+  email: "luca.rossi@example.com",
+  age: 30
+};
+
+const userPrefs = {
+  theme: "dark",
+  language: "it",
+  notifications: true
+};
+
+const userProfile = { ...userInfo, ...userPrefs };
+
+const { name, email, theme } = userProfile;
+
+console.log(`Utente: ${name}, Email: ${email}, Tema preferito: ${theme}`);
+
+
 // Esercizio 6: Stampa di Lettere Ritardata
 // Scrivi una funzione countLetters che accetta una stringa.
 // Per ogni lettera della stringa, usa setTimeout (con moltiplicatore dell'indice) per stamparla con il suo indice,
