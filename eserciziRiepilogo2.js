@@ -223,3 +223,24 @@ function quickStats({scores}){
 // Se l'array passato non è un array, ritorna un errore bloccante.
 // Alla fine, stampa quanti numeri sono stati trovati e mostra i primi due con il destructuring.
 // Infine invoca la funzione gestendo eventuali errori con try...catch e stampa un messaggio chiaro.
+
+
+let misto = [1,2,3, "ciao", "simone", true, false, null]
+function filterNumbers(misto){
+  //   if(elementi != Array){
+  //   throw new Error("l'array passato non è un array")
+  // }
+  let filtrato = misto.filter(elemento => typeof elemento === 'number')
+  return filtrato
+}
+
+try{
+   let numeriFiltrati = filterNumbers(misto)
+   let [primo, secondo] = numeriFiltrati
+   
+   console.log(primo)
+   console.log(secondo)
+}catch(error){
+  console.log("errore: " + error.message)
+}
+
