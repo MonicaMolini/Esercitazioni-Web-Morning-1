@@ -57,22 +57,108 @@ simulazione()
   .then((result) => console.log(result));
 
 // 4. Crea due Promises con tempi diversi (ad esempio 1s e 2s) e usale con `Promise.all` per stampare entrambi i risultati insieme.
-Promise.all([simulazione, simulazione2])
-  .then((result) => console.log(result[result.length - 1]))
-  .catch((error) => console.log(error));
-//RIFALLO CON PROMISE ALL MA NON CON LE FUNZIONI DI SOPRA, CON PROMISE CHE NON DIPENDONO L'UNA DALL'ALTRA
-// 5. Crea tre Promises che si risolvono in tempi differenti, utilizza Math random per creare una probabilità randomica del 50% di resolve e reject per ciascun; usa `Promise.all` per stampare solo l'ultimo risultato, oppure, l'errore intercettato.
+function first() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("PRIMA");
+    }, 1000);
+  });
+}
+function second() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("SECONDA");
+    }, 2000);
+  });
+}
+Promise.all([first(), second()])
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
 
+// 5. Crea tre Promises che si risolvono in tempi differenti, utilizza Math random per creare una probabilità randomica del 50% di resolve e reject per ciascun; usa `Promise.all` per stampare solo l'ultimo risultato, oppure, l'errore intercettato.
+const prima = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const variabile = Math.random();
+    if (variabile >= 0.5) {
+      resolve(variabile);
+    } else {
+      reject("Numero troppo basso");
+    }
+  }, 1000);
+});
+const seconda = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const variabile = Math.random();
+    if (variabile >= 0.5) {
+      resolve(variabile);
+    } else {
+      reject("Numero troppo basso");
+    }
+  }, 2000);
+});
+const terza = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const variabile = Math.random();
+    if (variabile >= 0.5) {
+      resolve(variabile);
+    } else {
+      reject("Numero troppo basso");
+    }
+  }, 3000);
+});
+
+Promise.all([prima, seconda, terza])
+  .then((result) =>
+    console.log("Ultimo risultato: ", result[result.length - 1])
+  )
+  .catch((error) => console.log(error));
 // 7. Gestisci un errore lanciato da una Promise con `.catch` e stampa un messaggio personalizzato, tipo `"Errore gestito: …"`.
 
+function gestione() {
+  return new Promise((resolve, reject) => {
+    const numero = Math.random();
+    if (numero > 1) {
+      resolve(numero);
+    } else {
+      reject("Qualcosa è andato storto");
+    }
+  });
+}
+gestione()
+  .then((result) => console.log(result))
+  .catch((error) => console.error("Errore gestito: ", error));
+
 // 8. Crea una funzione `failingPromise()` che ritorna una Promise che dopo 2 secondi **si rigetta** con un messaggio di errore.
+function failingPromise() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject("O, mi sa che hai sbagliato");
+    }, 2000);
+  });
+}
+failingPromise()
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
 
 // 9. Utilizza `.then()` concatenati per trasformare il risultato di una Promise:
 //    - parte da un numero,
 //    - moltiplicalo per 3,
 //    - aggiungi 5,
 //    - poi stampa il risultato.
-
+function primo(n) {
+  return new Promise((resolve, reject) => {
+    resolve(n * 3);
+  });
+}
+function secondo(result) {
+  return new Promise((resolve, reject) => {
+    resolve(result + 5);
+  });
+}
+primo(5)
+  .then((result) => secondo(result))
+  .then((finalResult) => console.log(finalResult))
+  .catch((error) => console.error(error));
 //BONUS
 // 10. Crea un array di Promises che comprendono risoluzioni e rigetti a tempi diversi e usa:
 //  `Promise.allSettled` per sapere quali hanno avuto successo e quali no
