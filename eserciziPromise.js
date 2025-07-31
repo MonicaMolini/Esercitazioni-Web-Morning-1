@@ -14,6 +14,16 @@ operazione
   .catch((error) => {
     console.error(error);
   });
+//METODO2
+async function eseguiOperazione() {
+  try {
+    const dato = await operazione;
+    console.log(dato);
+  } catch (error) {
+    console.error(error);
+  }
+}
+eseguiOperazione();
 // 2. Crea una funzione `isEven(num)` che ritorna una Promise:
 //    - se `num` è pari, si risolve con `"Numero pari"`;
 //    - altrimenti si rigetta con `"Numero dispari"`.
