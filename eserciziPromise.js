@@ -6,7 +6,7 @@ const operazione = new Promise((resolve, reject) => {
     resolve("Operazione completata");
   }, 2000);
 });
-
+//METODO1
 operazione
   .then((result) => {
     console.log(result);
@@ -26,12 +26,33 @@ function isEven(num) {
     }
   });
 }
+//METODO1
+// isEven(10)
+//   .then((result) => console.log(result))
+//   .catch((error) => console.error(error))
+//   .finally(() => console.log("Operazione conclusa"));
+//METODO2
+async function eseguiIsEven() {
+  try {
+    const numero = await ritornoNumero();
+    const dato = await isEven(numero);
+    console.log(dato);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    console.log("Operazione conclusa");
+  }
+}
 
-isEven(10)
-  .then((result) => console.log(result))
-  .catch((error) => console.error(error))
-  .finally(() => console.log("Operazione conclusa"));
+function ritornoNumero() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(Math.floor(Math.random() * 20));
+    }, 2000);
+  });
+}
 
+eseguiIsEven();
 // 3. Simula una chiamata API
 // Scrivi una promise che si risolve e restituisce un oggetto utente { id: 1, name: "Alice" , cognome: "Rossi", eta: 18} dopo 3 secondi.
 // Scrivi un'altra promise che usa il risultato della prima e con un ritardo di 3 secondi si risolve con una stringa `Alice Rossi ha 18 anni`; **i dati devono essere presi dalla prima promise**.
