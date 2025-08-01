@@ -82,11 +82,17 @@ function simulazione2(user) {
     }, 3000);
   });
 }
-
+//METODO 1
 simulazione()
   .then((result) => simulazione2(result))
   .then((result) => console.log(result));
-
+//METODO 2
+async function avviaMessaggio() {
+  const user = await simulazione();
+  const messaggio = await simulazione2(user);
+  console.log(messaggio);
+}
+avviaMessaggio();
 // 4. Crea due Promises con tempi diversi (ad esempio 1s e 2s) e usale con `Promise.all` per stampare entrambi i risultati insieme.
 function first() {
   return new Promise((resolve, reject) => {
@@ -102,10 +108,16 @@ function second() {
     }, 2000);
   });
 }
+//METODO 1
 Promise.all([first(), second()])
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
-
+//METODO 2
+async function tuttiEDue() {
+  const [prima, seconda] = await Promise.all([first(), second()]);
+  console.log(prima, seconda);
+}
+tuttiEDue();
 // 5. Crea tre Promises che si risolvono in tempi differenti, utilizza Math random per creare una probabilità randomica del 50% di resolve e reject per ciascun; usa `Promise.all` per stampare solo l'ultimo risultato, oppure, l'errore intercettato.
 const prima = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -137,12 +149,22 @@ const terza = new Promise((resolve, reject) => {
     }
   }, 3000);
 });
-
+//METODO 1
 Promise.all([prima, seconda, terza])
   .then((result) =>
     console.log("Ultimo risultato: ", result[result.length - 1])
   )
   .catch((error) => console.log(error));
+//METODO 2
+async function tutteETre() {
+  try {
+    const [uno, due, tre] = await Promise.all([prima, seconda, terza]);
+    console.log("Ultimo risultato: ", tre);
+  } catch (error) {
+    console.error(error);
+  }
+}
+tutteETre();
 // 7. Gestisci un errore lanciato da una Promise con `.catch` e stampa un messaggio personalizzato, tipo `"Errore gestito: …"`.
 
 function gestione() {
@@ -155,10 +177,20 @@ function gestione() {
     }
   });
 }
+//METODO 1
 gestione()
   .then((result) => console.log(result))
   .catch((error) => console.error("Errore gestito: ", error));
-
+//METODO 2
+async function prova() {
+  try {
+    const dato = await gestione();
+    console.log(dato);
+  } catch (error) {
+    console.error("Errore gestito: ", error);
+  }
+}
+prova();
 // 8. Crea una funzione `failingPromise()` che ritorna una Promise che dopo 2 secondi **si rigetta** con un messaggio di errore.
 function failingPromise() {
   return new Promise((resolve, reject) => {
@@ -167,10 +199,20 @@ function failingPromise() {
     }, 2000);
   });
 }
+//METODO 1
 failingPromise()
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
-
+//METODO 2
+async function esempio() {
+  try {
+    const dato = await failingPromise();
+    console.log(dato);
+  } catch (error) {
+    console.error("Errore gestito: ", error);
+  }
+}
+esempio();
 // 9. Utilizza `.then()` concatenati per trasformare il risultato di una Promise:
 //    - parte da un numero,
 //    - moltiplicalo per 3,
@@ -186,11 +228,54 @@ function secondo(result) {
     resolve(result + 5);
   });
 }
+//METODO 1
 primo(5)
   .then((result) => secondo(result))
   .then((finalResult) => console.log(finalResult))
   .catch((error) => console.error(error));
+//METODO 2
+async function operazion() {
+  try {
+    const primaOperazione = await primo(10);
+    const secondaOperazione = await secondo(primaOperazione);
+    console.log(secondaOperazione);
+  } catch (error) {
+    console.error(error);
+  }
+}
+operazion();
 //BONUS
 // 10. Crea un array di Promises che comprendono risoluzioni e rigetti a tempi diversi e usa:
 //  `Promise.allSettled` per sapere quali hanno avuto successo e quali no
 //  `Promise.race` per sapere quale Promise si risolve per prima
+const promises = [
+  new Promise((resolve, reject) => setTimeout(() => resolve("A")), 500),
+  new Promise((resolve, reject) => setTimeout(() => resolve("B")), 1000),
+  new Promise((resolve, reject) => setTimeout(() => reject("Error A")), 1500),
+  new Promise((resolve, reject) => setTimeout(() => resolve("c")), 2000),
+  new Promise((resolve, reject) => setTimeout(() => reject("Error B")), 2500),
+  new Promise((resolve, reject) => setTimeout(() => resolve("d")), 3000),
+  new Promise((resolve, reject) => setTimeout(() => reject("Error C")), 3500),
+];
+//METODO 1
+Promise.allSettled(promises).then((result) => console.log(result));
+
+Promise.race(promises)
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+//METODO 2
+async function funzione() {
+  const prima = await Promise.allSettled(promises);
+  console.log(prima);
+}
+funzione();
+
+async function funzione2() {
+  try {
+    const prima = await Promise.race(promises);
+    console.log(prima);
+  } catch (error) {
+    console.error(error);
+  }
+}
+funzione2();
