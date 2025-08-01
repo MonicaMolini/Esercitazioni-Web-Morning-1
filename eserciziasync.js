@@ -1,18 +1,55 @@
 // Esercizio 1 - GESTIONE ORDINI FAST FOOD
 // Obiettivo: simulare in console la gestione ordini di un fast food.
-
 //
 // CONSEGNA:
 //
-
 // 1. Crea un array vuoto chiamato `ordini` e una variabile `idCorrente` che parte da 1.
-
+let ordini = [];
+let idCorrente = 1;
 // 2. Crea una funzione `creaOrdine(nomeCliente, prodotti, callback)` che:
 //    - calcola il totale dell’ordine (somma dei prezzi)
 //    - crea un oggetto ordine con: `id`, `cliente`, `prodotti`, `totale`, `stato: "in preparazione"`
 //    - aggiunge l’ordine all’array `ordini`
 //    - stampa un messaggio in console
 //    - esegue la `callback` passando l’ordine appena creato
+function creaOrdine(nomeCliente, prodotti, callback) {
+  const somma = prodotti.reduce((acc, cur) => acc + cur.prezzo, 0);
+  const ordine = {
+    id: idCorrente,
+    cliente: nomeCliente,
+    prodotti: prodotti,
+    totale: somma,
+    stato: "in preparazione",
+  };
+  ordini.push(ordine);
+  idCorrente += 1;
+  callback(ordine);
+}
+
+function stampaOrdine({ id, cliente, prodotti, totale, stato }) {
+  const listaProdotti = prodotti
+    .map(
+      (prodotto) =>
+        `${prodotto.nome} - ${prodotto.prezzo}€ - ${prodotto.quantita}pz.`
+    )
+    .join("; ");
+  console.log(
+    `L'ordine n°${id} effettuato da ${cliente}, composta da ${listaProdotti} ha un totale di ${totale}€, ed è ${stato}`
+  );
+}
+const ordineUno = [
+  { nome: "Pizza Margherita", prezzo: 6.5, quantita: 2 },
+  { nome: "Coca Cola", prezzo: 2.0, quantita: 1 },
+];
+
+const ordineDue = [
+  { nome: "Pizza Marinara", prezzo: 5, quantita: 1 },
+  { nome: "Pizza Wrustel e Patatine", prezzo: 8, quantita: 2 },
+  { nome: "Fanta", prezzo: 2.0, quantita: 1 },
+  { nome: "Coca Cola", prezzo: 2.0, quantita: 1 },
+];
+creaOrdine("Mario Rossi", ordineUno, stampaOrdine);
+creaOrdine("Riccardo Cirella", ordineDue, stampaOrdine);
 
 // 3. Crea una funzione `aggiornaStatoOrdine(id, nuovoStato, callback)` che:
 //    - cerca l’ordine con l’ID specificato
@@ -20,9 +57,29 @@
 //    - stampa in console l’aggiornamento
 //    - esegue la `callback` passando l’ordine aggiornato
 
+function aggiornaStatoOrdine(id, nuovoStato, callback) {
+  const ordineDaAggiornare = ordini.find((ordine) => ordine.id === id);
+  ordineDaAggiornare.stato = nuovoStato;
+  callback(ordineDaAggiornare);
+}
+function stampaOrdineAggiornato({ id, cliente, prodotti, totale, stato }) {
+  console.log(`L'ordine n°${id} è stato ${stato}`);
+}
+aggiornaStatoOrdine(1, "Pronto!!", stampaOrdineAggiornato);
+aggiornaStatoOrdine(2, "Pronto!!", stampaOrdineAggiornato);
+
 // 4. Crea una funzione `mostraOrdini()` che:
 //    - stampa in console l’elenco completo di tutti gli ordini con ID, cliente, totale, stato
-
+function mostraOrdini() {
+  const listaOrdini = ordini
+    .map(
+      (ordine) =>
+        `${ordine.id} - ${ordine.cliente} - ${ordine.totale}€ - ${ordine.stato}\n`
+    )
+    .join("");
+  console.log(listaOrdini);
+}
+mostraOrdini();
 // 5. Usa le funzioni per simulare:
 //    - un ordine per un cliente a tua scelta
 //    - un cambio di stato a “pronto”
@@ -30,11 +87,9 @@
 
 //Esercizio 2 - HR CONSOLE – GESTIONE DIPENDENTI
 // Obiettivo: simulare in console la gestione di uno staff aziendale.
-
 //
 // CONSEGNA:
 //
-
 // 1. Crea un array vuoto chiamato `dipendenti` e una variabile `idDip` che parte da 1.
 
 // 2. Crea una funzione `aggiungiDipendente(nome, ruolo, stipendio, callback)` che:
