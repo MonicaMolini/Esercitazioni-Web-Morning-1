@@ -120,3 +120,33 @@ Promise.all([promise1, promise2, promise3]) //in questo caso Promise.all verrà 
   .catch((error) => {
     console.error("Una delle promesse è fallita:", error);
   });
+
+// Promise.allSettled: Aspetta che tutte le Promise siano risolte o rifiutate. Restituisce un array di oggetti che contengono lo stato e il valore o il motivo del rifiuto di **ogni** Promise.
+
+Promise.allSettled([promise1, promise2, promise3])
+  .then((results) => {
+    console.log("Tutti i risultati (anche quelli rifiutati):", results);
+  })
+  .catch((error) => {
+    console.error("Errore in Promise.allSettled:", error);
+  });
+
+// Promise.race: restituisce il risultato della prima Promise risolta o rifiutata. Se una delle Promise è risolta, Promise.race restituisce il suo valore. Se tutte le Promise sono rifiutate, restituisce un errore.
+
+Promise.race([promise1, promise2, promise3])
+  .then((result) => {
+    console.log("Prima promessa risolta:", result);
+  })
+  .catch((error) => {
+    console.error("Tutte le promesse sono fallite:", error);
+  });
+
+// Promise.any: Restituisce la prima Promise risolta o rifiutata. Se una delle Promise è risolta, Promise.any restituisce il suo valore. Se tutte le Promise sono rifiutate, restituisce un errore.
+
+Promise.any([promise1, promise2, promise3])
+  .then((result) => {
+    console.log("Prima promessa risolta:", result);
+  })
+  .catch((error) => {
+    console.error("Tutte le promesse sono fallite:", error);
+  });
