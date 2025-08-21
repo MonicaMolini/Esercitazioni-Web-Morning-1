@@ -170,14 +170,38 @@ calcolaMediaStipendi();
 //    - `preferenzaIncantesimo` (stringa): uno tra `"fuoco"`, `"ghiaccio"` o `"fulmine"`
 //    - `coraggio` (numero da 1 a 10): modifica il rischio di fallimento dell’incantesimo
 //    - un metodo `evocaIncantesimo()` che restituisce una `Promise`
-//
+class Avventuriero {
+  constructor(nome, preferenzaIncantesimo, coraggio) {
+    this.nome = nome;
+    this.preferenzaIncantesimo = preferenzaIncantesimo;
+    this.coraggio = coraggio;
+  }
+  evocaIncantesimo() {
+    return new Promise((resolve, reject) => {
+      let probabilitaSuccesso = this.coraggio / 10;
+      setTimeout(() => {
+        if (Math.random() < probabilitaSuccesso) {
+          resolve(
+            `${this.nome} ha evocato un incantesimo di ${this.preferenzaIncantesimo}!`
+          );
+        } else {
+          reject(
+            `${this.nome} ha fallito l'incantesimo di ${this.preferenzaIncantesimo}...`
+          );
+        }
+      }, 1000);
+    });
+  }
+}
+
 // 2. **Crea una funzione generatrice di incantesimi** chiamata `creaIncantesimo(nome, basePotenza, tempo, rischioBase)`:
 //    - Deve restituire una funzione che prende in input il `coraggio`
 //    - La funzione restituisce una `Promise` che si risolve dopo `tempo` (in millisecondi)
 //    - Il `coraggio` diminuisce la probabilità di fallimento
 //    - Se l’incantesimo riesce, si risolve con una potenza calcolata in base a `basePotenza + coraggio * 2`
 //    - Se fallisce, viene rigettata con un messaggio d’errore
-//
+function creaIncantesimo(nome, basePotenza, tempo, rischioBase) {}
+
 // 3. **Crea una libreria di incantesimi** (oggetto `libreriaIncantesimi`) con 3 incantesimi:
 //    - `fuoco`: basePotenza 50, tempo 2000ms, rischioBase 0.3
 //    - `ghiaccio`: basePotenza 40, tempo 1500ms, rischioBase 0.2
