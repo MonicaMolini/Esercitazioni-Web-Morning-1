@@ -91,7 +91,19 @@ mostraOrdini();
 // CONSEGNA:
 //
 // 1. Crea un array vuoto chiamato `dipendenti` e una variabile `idDip` che parte da 1.
-
+let dipendenti = [];
+let idDip = 1;
+function aggiungiDipendente(nome, ruolo, stipendio, callback) {
+  let dipendente = {
+    id: idDip++,
+    nome: nome,
+    ruolo: ruolo,
+    stipendio: stipendio,
+  };
+  dipendenti.push(dipendente);
+  console.log(`Nuovo dipendete aggiunto:${dipendente.nome}`);
+  callback(dipendente);
+}
 // 2. Crea una funzione `aggiungiDipendente(nome, ruolo, stipendio, callback)` che:
 //    - crea un oggetto dipendente con `id`, `nome`, `ruolo`, `stipendio`
 //    - lo aggiunge all’array `dipendenti`
@@ -103,19 +115,46 @@ mostraOrdini();
 //    - aggiorna il suo ruolo e stipendio (+ aumento)
 //    - stampa in console i dati aggiornati
 //    - esegue la `callback` passando il dipendente aggiornato
+function promuovi(id, nuovoRuolo, aumento, callback) {
+  let dipendente = dipendenti.find((dipendente) => dipendente.id === id);
+  if (dipendente) {
+    dipendente.ruolo = nuovoRuolo;
+    dipendente.stipendio += aumento;
+  }
+  console.log(
+    `Dipendente promosso: ${dipendente.nome}, nuovo ruolo: ${dipendente.ruolo}, nuovo stipendio: ${dipendente.stipendio}`
+  );
+  callback(dipendente);
+}
 
 // 4. Crea una funzione `mostraStaff()` che:
 //    - stampa in console l’elenco completo dei dipendenti con ID, nome, ruolo, stipendio
-
+function mostraStaff() {
+  dipendenti.forEach((dipendente) =>
+    console.log(
+      `id: ${dipendente.id}, nome: ${dipendente.nome}, ruolo: ${dipendente.ruolo}, stipendio: ${dipendente.stipendio}`
+    )
+  );
+}
 // 5. Crea una funzione `calcolaMediaStipendi()` che:
 //    - calcola e stampa la media degli stipendi dei dipendenti attuali
+function calcolaMediaStipendi() {
+  let somma = dipendenti.reduce((acc, cur) => acc + cur.stipendio, 0);
+  let media = somma / dipendenti.length;
+  console.log(`La media degli stipendi è: ${media}`);
+}
 
 // 6. Usa le funzioni per simulare:
 //    - due assunzioni
 //    - una promozione
 //    - la stampa dello staff
 //    - il calcolo della media stipendi
-
+aggiungiDipendente("Luca", "Developer", 2000, () => {});
+aggiungiDipendente("Sara", "Designer", 1800, () => {});
+aggiungiDipendente("Marco", "Manager", 2500, () => {});
+promuovi(2, "designer pro", 500, () => {});
+mostraStaff();
+calcolaMediaStipendi();
 // Esercizio 3 - Le Promesse del Regno di Asynchronia
 //
 // OBIETTIVO:
