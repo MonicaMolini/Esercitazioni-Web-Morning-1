@@ -26,17 +26,10 @@ Non serve quindi sapere cosa fa la funzione ricevuta, ma solo assicurarsi che ve
 // ESERCIZIO 3
 // Crea una funzione che riceve una lista di stringhe e una funzione di controllo.
 // Deve restituire solo le stringhe che rispettano la condizione definita dalla funzione passata.
-function stringhe(x, callback){
-    return x.filter((y) => callback(y) )
-}
 
 // ESERCIZIO 4
 // Scrivi una funzione che riceve una lista di numeri, una funzione di test e una funzione aggregatrice.
 // La funzione deve restituire un singolo risultato numerico ottenuto filtrando e poi combinando gli elementi.
-
-function controllo(lista, test, somma){
-    return lista.filter(elemento => test(elemento)).reduce(somma, 0)
-}
 
 // ESERCIZIO 5
 // Crea una funzione che prende una lista di oggetti contenenti nome e stato (booleano).
@@ -55,16 +48,9 @@ function applica(oggetti, callback){
 // Scrivi una funzione che riceve una lista di frasi e una funzione di analisi testuale.
 // Deve restituire una struttura dati che rappresenti il risultato dell’analisi su ciascuna frase.
 
-function lista(frasi, analisi){
-    return frasi.map(frase => analisi(frase))
-}
-
 // ESERCIZIO 7
 // Crea una funzione che prende una lista di numeri e una funzione condizionale.
 // Deve restituire una nuova lista in cui alcuni numeri sono trasformati, altri lasciati invariati, in base alla condizione.
-function numbers(numeri, condizione){
-    return numeri.map((x) => (condizione(x) ? x*2 : x ))
-}
 
 // ESERCIZIO 8
 // Scrivi una funzione che riceve una lista di oggetti e una funzione di categorizzazione.
